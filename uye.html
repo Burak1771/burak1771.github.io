@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ElayStore - Üyelik</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            padding: 20px 6%;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .kutu {
+            width: 100%;
+            max-width: 450px;
+            margin: 50px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .sekme {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .sekme button {
+            width: 50%;
+            padding: 12px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .aktif {
+            background: #111;
+            color: white;
+        }
+
+        .pasif {
+            background: #eee;
+            color: #222;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .ana-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: 0;
+            border-radius: 8px;
+            background: #ff6000;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .ana-btn:hover {
+            opacity: 0.9;
+        }
+
+        .mesaj {
+            margin-top: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .gizli {
+            display: none;
+        }
+
+        .hesap {
+            text-align: center;
+        }
+
+        .cikis-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: 0;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a href="index.html">
+        ← Mağazaya Dön
+    </a>
+
+</header>
+
+
+<div class="kutu">
+
+    <h1>👤 ElayStore</h1>
+
+
+    <div id="formlar">
+
+        <div class="sekme">
+
+            <button
+                id="girisSekme"
+                class="aktif"
+                onclick="girisGoster()"
+            >
+                Giriş Yap
+            </button>
+
+            <button
+                id="uyeSekme"
+                class="pasif"
+                onclick="uyeOlGoster()"
+            >
+                Üye Ol
+            </button>
+
+        </div>
+
+
+        <!-- GİRİŞ -->
+
+        <div id="girisForm">
+
+            <label>
+                E-posta
+            </label>
+
+            <input
+                type="email"
+                id="girisEmail"
+                placeholder="E-posta adresiniz"
+            >
+
+
+            <label>
+                Şifre
+            </label>
+
+            <input
+                type="password"
+                id="girisSifre"
+                placeholder="Şifreniz"
+            >
+
+
+            <button
+                class="ana-btn"
+                onclick="girisYap()"
+            >
+                Giriş Yap
+            </button>
+
+        </div>
+
+
+        <!-- ÜYE OL -->
+
+        <div
+            id="uyeForm"
+            class="gizli"
+        >
+
+            <label>
+                Ad Soyad
+            </label>
+
+            <input
+                type="text"
+                id="adSoyad"
+                placeholder="Adınız ve soyadınız"
+            >
+
+
+            <label>
+                E-posta
+            </label>
+
+            <input
+                type="email"
+                id="uyeEmail"
+                placeholder="E-posta adresiniz"
+            >
+
+
+            <label>
+                Şifre
+            </label>
+
+            <input
+                type="password"
+                id="uyeSifre"
+                placeholder="En az 6 karakter"
+            >
+
+
+            <button
+                class="ana-btn"
+                onclick="uyeOl()"
+            >
+                Üye Ol
+            </button>
+
+        </div>
+
+
+        <div
+            id="mesaj"
+            class="mesaj"
+        ></div>
+
+    </div>
+
+
+    <!-- HESAP -->
+
+    <div
+        id="hesap"
+        class="gizli hesap"
+    >
+
+        <h2>
+            🎉 Hoş geldin!
+        </h2>
+
+        <p id="kullaniciEmail"></p>
+
+        <button
+            class="cikis-btn"
+            onclick="cikisYap()"
+        >
+            Çıkış Yap
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+    import {
+        initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+        updateProfile
+    }
+    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyDKpEI_TzDxA38N30BEjMScnl0GnYabl3c",
+
+        authDomain: "elaystore-c4d53.firebaseapp.com",
+
+        projectId: "elaystore-c4d53",
+
+        storageBucket: "elaystore-c4d53.firebasestorage.app",
+
+        messagingSenderId: "585341292448",
+
+        appId: "1:585341292448:web:51ace255ab2fcf89b21ec5",
+
+        measurementId: "G-YMS32EVTTH"
+
+    };
+
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+    window.girisGoster = function () {
+
+        document
+            .getElementById("girisForm")
+            .classList
+            .remove("gizli");
+
+        document
+            .getElementById("uyeForm")
+            .classList
+            .add("gizli");
+
+        document
+            .getElementById("girisSekme")
+            .className = "aktif";
+
+        document
+            .getElementById("uyeSekme")
+            .className = "pasif";
+
+        mesajTemizle();
+
+    };
+
+
+    window.uyeOlGoster = function () {
+
+        document
+            .getElementById("girisForm")
+            .classList
+            .add("gizli");
+
+        document
+            .getElementById("uyeForm")
+            .classList
+            .remove("gizli");
+
+        document
+            .getElementById("girisSekme")
+            .className = "pasif";
+
+        document
+            .getElementById("uyeSekme")
+            .className = "aktif";
+
+        mesajTemizle();
+
+    };
+
+
+    window.uyeOl = async function () {
+
+        const ad =
+            document
+                .getElementById("adSoyad")
+                .value
+                .trim();
+
+        const email =
+            document
+                .getElementById("uyeEmail")
+                .value
+                .trim();
+
+        const sifre =
+            document
+                .getElementById("uyeSifre")
+                .value;
+
+
+        if (!ad || !email || !sifre) {
+
+            mesajGoster(
+                "Lütfen bütün alanları doldur.",
+                "red"
+            );
+
+            return;
+
+        }
+
+
+        if (sifre.length < 6) {
+
+            mesajGoster(
+                "Şifre en az 6 karakter olmalı.",
+                "red"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const sonuc =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    sifre
+                );
+
+
+            await updateProfile(
+                sonuc.user,
+                {
+                    displayName: ad
+                }
+            );
+
+
+            mesajGoster(
+                "Üyeliğiniz başarıyla oluşturuldu! 🎉",
+                "green"
+            );
+
+        }
+
+        catch (hata) {
+
+            if (
+                hata.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                mesajGoster(
+                    "Bu e-posta adresi zaten kayıtlı.",
+                    "red"
+                );
+
+            }
+
+            else if (
+                hata.code ===
+                "auth/invalid-email"
+            ) {
+
+                mesajGoster(
+                    "Geçerli bir e-posta adresi girin.",
+                    "red"
+                );
+
+            }
+
+            else {
+
+                mesajGoster(
+                    "Üyelik oluşturulamadı. Lütfen tekrar deneyin.",
+                    "red"
+                );
+
+            }
+
+            console.log(hata);
+
+        }
+
+    };
+
+
+    window.girisYap = async function () {
+
+        const email =
+            document
+                .getElementById("girisEmail")
+                .value
+                .trim();
+
+        const sifre =
+            document
+                .getElementById("girisSifre")
+                .value;
+
+
+        if (!email || !sifre) {
+
+            mesajGoster(
+                "E-posta ve şifreyi girin.",
+                "red"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                sifre
+            );
+
+            mesajGoster(
+                "Giriş başarılı! 🎉",
+                "green"
+            );
+
+        }
+
+        catch (hata) {
+
+            mesajGoster(
+                "E-posta veya şifre hatalı.",
+                "red"
+            );
+
+            console.log(hata);
+
+        }
+
+    };
+
+
+    window.cikisYap = async function () {
+
+        await signOut(auth);
+
+        mesajGoster(
+            "Çıkış yapıldı.",
+            "green"
+        );
+
+    };
+
+
+    onAuthStateChanged(
+        auth,
+        function (user) {
+
+            if (user) {
+
+                document
+                    .getElementById("formlar")
+                    .classList
+                    .add("gizli");
+
+                document
+                    .getElementById("hesap")
+                    .classList
+                    .remove("gizli");
+
+                document
+                    .getElementById("kullaniciEmail")
+                    .textContent =
+                    user.displayName ||
+                    user.email;
+
+            }
+
+            else {
+
+                document
+                    .getElementById("formlar")
+                    .classList
+                    .remove("gizli");
+
+                document
+                    .getElementById("hesap")
+                    .classList
+                    .add("gizli");
+
+            }
+
+        }
+    );
+
+
+    function mesajGoster(
+        metin,
+        renk
+    ) {
+
+        const mesaj =
+            document.getElementById("mesaj");
+
+        mesaj.textContent = metin;
+
+        mesaj.style.color = renk;
+
+    }
+
+
+    function mesajTemizle() {
+
+        document
+            .getElementById("mesaj")
+            .textContent = "";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
