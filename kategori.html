@@ -1,0 +1,392 @@
+```html id="6i2l8x"
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kategori</title>
+
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+
+        header {
+            background: #111;
+            padding: 20px 6%;
+        }
+
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+
+        .urunler {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+
+        .urun {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+        }
+
+
+        .urun img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+        }
+
+
+        .puan {
+            color: #f2a900;
+            margin: 10px 0;
+        }
+
+
+        .eski {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+
+        .fiyat {
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+
+        .stok {
+            color: #159447;
+            margin-top: 10px;
+        }
+
+
+        .sepet-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #ff6000;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .urunler {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <a href="kategoriler.html">
+            ← Kategorilere Dön
+        </a>
+
+    </header>
+
+
+    <div class="container">
+
+
+        <h1 id="baslik">
+            Ürünler
+        </h1>
+
+
+        <div
+            class="urunler"
+            id="urunler"
+        ></div>
+
+
+    </div>
+
+
+    <script>
+
+
+        const urunler = {
+
+            bileklik: {
+
+                baslik: "🧿 El İşi Bileklik",
+
+                urun: {
+
+                    id: "mouse",
+
+                    ad: "El İşi Bileklik",
+
+                    resim: "resim.jpg",
+
+                    puan: "⭐⭐⭐⭐⭐ 4.8",
+
+                    eski: "350 TL",
+
+                    fiyat: 265,
+
+                    stok: "🟢 Stokta 25 adet"
+
+                }
+
+            },
+
+
+            klavye: {
+
+                baslik: "⌨️ Klavye",
+
+                urun: {
+
+                    id: "klavye",
+
+                    ad: "RGB Gaming Klavye",
+
+                    resim: "resim.jpg",
+
+                    puan: "⭐⭐⭐⭐⭐ 4.7",
+
+                    eski: "2.799 TL",
+
+                    fiyat: 2299,
+
+                    stok: "🟢 Stokta 12 adet"
+
+                }
+
+            },
+
+
+            mousepad: {
+
+                baslik: "🖱️ Mouse Pad",
+
+                urun: {
+
+                    id: "mousepad",
+
+                    ad: "90x40 Gaming Mouse Pad",
+
+                    resim: "resim.jpg",
+
+                    puan: "⭐⭐⭐⭐⭐ 4.9",
+
+                    eski: "899 TL",
+
+                    fiyat: 699,
+
+                    stok: "🟢 Stokta 40 adet"
+
+                }
+
+            },
+
+
+            kulaklik: {
+
+                baslik: "🎧 Kulaklık",
+
+                urun: {
+
+                    id: "kulaklik",
+
+                    ad: "Gaming Kulaklık",
+
+                    resim: "resim.jpg",
+
+                    puan: "⭐⭐⭐⭐☆ 4.6",
+
+                    eski: "1.999 TL",
+
+                    fiyat: 1599,
+
+                    stok: "🟢 Stokta 18 adet"
+
+                }
+
+            }
+
+        };
+
+
+        const kategori =
+            new URLSearchParams(location.search)
+            .get("kategori");
+
+
+        const secilen =
+            urunler[kategori];
+
+
+        const baslik =
+            document.getElementById("baslik");
+
+
+        const liste =
+            document.getElementById("urunler");
+
+
+        if (!secilen) {
+
+            baslik.textContent =
+                "Kategori bulunamadı";
+
+        }
+
+
+        else {
+
+            baslik.textContent =
+                secilen.baslik;
+
+
+            const p =
+                secilen.urun;
+
+
+            const kart =
+                document.createElement("div");
+
+
+            kart.className =
+                "urun";
+
+
+            kart.onclick = function() {
+
+                location.href =
+                    "urun.html?urun=" + p.id;
+
+            };
+
+
+            kart.innerHTML = `
+
+                <img
+                    src="${p.resim}"
+                    alt="${p.ad}"
+                >
+
+                <h2>
+                    ${p.ad}
+                </h2>
+
+                <div class="puan">
+                    ${p.puan}
+                </div>
+
+                <div class="eski">
+                    ${p.eski}
+                </div>
+
+                <div class="fiyat">
+                    ${p.fiyat.toLocaleString("tr-TR")} TL
+                </div>
+
+                <div class="stok">
+                    ${p.stok}
+                </div>
+
+                <button
+                    class="sepet-btn"
+                    onclick="event.stopPropagation(); sepeteEkle('${p.ad}', ${p.fiyat})"
+                >
+                    🛒 Sepete Ekle
+                </button>
+
+            `;
+
+
+            liste.appendChild(kart);
+
+        }
+
+
+        function sepeteEkle(ad, fiyat) {
+
+            let sepet =
+                JSON.parse(
+                    localStorage.getItem("sepet") || "[]"
+                );
+
+
+            sepet.push({
+
+                ad: ad,
+
+                fiyat: fiyat
+
+            });
+
+
+            localStorage.setItem(
+                "sepet",
+                JSON.stringify(sepet)
+            );
+
+
+            alert(
+                ad + " sepete eklendi! 🛒"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+```
