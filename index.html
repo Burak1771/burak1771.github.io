@@ -670,7 +670,35 @@ sepetGoster();
 
 
 </script>
+<script>
 
+function kategoriGoster(kategori) {
+
+    var urunler = document.querySelectorAll(".urun");
+
+    urunler.forEach(function(urun) {
+
+        var urunKategori =
+            urun.getAttribute("data-kategori");
+
+        if (
+            kategori === "hepsi" ||
+            urunKategori === kategori
+        ) {
+
+            urun.style.display = "block";
+
+        } else {
+
+            urun.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
 
 </body>
 
