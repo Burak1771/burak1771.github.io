@@ -672,25 +672,75 @@ sepetGoster();
 </script>
 <script>
 
+let sepet = JSON.parse(
+    localStorage.getItem('sepet') || '[]'
+);
+
+
+// ÜRÜN DETAYI
+function urunDetay(id) {
+
+    location.href = 'urun.html?urun=' + id;
+
+}
+
+
+// SEPETE EKLE
+function sepeteEkle(e, ad, fiyat) {
+
+    e.stopPropagation();
+
+    sepet.push({
+        ad: ad,
+        fiyat: fiyat
+    });
+
+    localStorage.setItem(
+        'sepet',
+        JSON.stringify(sepet)
+    );
+
+    sepetGoster();
+
+}
+
+
+// SEPETTEN SİL
+function sil(i) {
+
+    sepet.splice(i, 1);
+
+    localStorage.setItem(
+        'sepet',
+        JSON.stringify(sepet)
+    );
+
+    sepetGoster();
+
+}
+
+
+// KATEGORİ FİLTRELEME
 function kategoriGoster(kategori) {
 
-    var urunler = document.querySelectorAll(".urun");
+    const urunler =
+        document.querySelectorAll('.urun');
 
     urunler.forEach(function(urun) {
 
-        var urunKategori =
-            urun.getAttribute("data-kategori");
+        const urunKategori =
+            urun.getAttribute('data-kategori');
 
         if (
-            kategori === "hepsi" ||
+            kategori === 'hepsi' ||
             urunKategori === kategori
         ) {
 
-            urun.style.display = "block";
+            urun.style.display = '';
 
         } else {
 
-            urun.style.display = "none";
+            urun.style.display = 'none';
 
         }
 
@@ -698,8 +748,72 @@ function kategoriGoster(kategori) {
 
 }
 
-</script>
 
+// SEPETİ GÖSTER
+function sepetGoster() {
+
+    document.getElementById('sepetSayi').textContent =
+        sepet.length;
+
+    const liste =
+        document.getElementById('sepetListe');
+
+    if (sepet.length === 0) {
+
+        liste.textContent =
+            'Sepetiniz boş.';
+
+        document.getElementById('toplam').textContent =
+            '0';
+
+        return;
+
+    }
+
+    liste.innerHTML = '';
+
+    let toplam = 0;
+
+    sepet.forEach(function(u, i) {
+
+        toplam += u.fiyat;
+
+        const div =
+            document.createElement('div');
+
+        div.className =
+            'sepet-item';
+
+        div.innerHTML =
+            '<span>' +
+            u.ad +
+            '</span>' +
+
+            '<span>' +
+            u.fiyat +
+            ' TL ' +
+
+            '<button onclick="sil(' +
+            i +
+            ')">❌</button>' +
+
+            '</span>';
+
+        liste.appendChild(div);
+
+    });
+
+    document.getElementById('toplam').textContent =
+        toplam.toLocaleString('tr-TR');
+
+}
+
+
+// SAYFA AÇILINCA SEPETİ GÖSTER
+sepetGoster();
+
+</script>
+    
 </body>
 
 </html>
