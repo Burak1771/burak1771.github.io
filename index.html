@@ -193,9 +193,6 @@ header {
         ⌨️ El işi Tablo
     </button>
 
-    
-    </button>
-
     <button type="button" onclick="kategoriGoster('kulaklik')">
         🎧 Kulaklık
     </button>
@@ -227,7 +224,7 @@ header {
      <div class="stok">
       🟢 Stokta Var
      </div>
-     <button class="sepet-btn" onclick="sepeteEkle(event,'Beyaz Gaming Mouse',1499)">
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Beyaz Gaming Mouse',195)">
       🛒 Sepete Ekle
      </button>
     </div>
@@ -320,9 +317,7 @@ header {
     </div>
    </div>
   </div>
-  <script>
-  
-let sepet = JSON.parse(
+  let sepet = JSON.parse(
     localStorage.getItem('sepet') || '[]'
 );
 
@@ -352,6 +347,7 @@ function sepeteEkle(e, ad, fiyat) {
 
 }
 
+
 function sil(i) {
 
     sepet.splice(i, 1);
@@ -365,16 +361,30 @@ function sil(i) {
 
 }
 
-   
 
 function kategoriGoster(kategori) {
 
     const urunler =
         document.querySelectorAll('.urun');
 
-    // devamı...
-}
+    urunler.forEach(function(urun) {
 
+        const urunKategori =
+            urun.getAttribute('data-kategori');
+
+        if (kategori === 'hepsi') {
+
+            urun.style.display = '';
+
+        } else if (urunKategori === kategori) {
+
+            urun.style.display = '';
+
+        } else {
+
+            urun.style.display = 'none';
+
+        }
 
     });
 
@@ -386,14 +396,12 @@ function sepetGoster() {
     document.getElementById('sepetSayi').textContent =
         sepet.length;
 
-
-    let l =
+    let liste =
         document.getElementById('sepetListe');
-
 
     if (!sepet.length) {
 
-        l.textContent =
+        liste.textContent =
             'Sepetiniz boş.';
 
         document.getElementById('toplam').textContent =
@@ -403,32 +411,27 @@ function sepetGoster() {
 
     }
 
+    liste.innerHTML = '';
 
-    l.innerHTML = '';
-
-    let t = 0;
-
+    let toplam = 0;
 
     sepet.forEach(function(u, i) {
 
-        t += u.fiyat;
+        toplam += u.fiyat;
 
-
-        let d =
+        let div =
             document.createElement('div');
 
-
-        d.className =
+        div.className =
             'sepet-item';
 
-
-        d.innerHTML =
+        div.innerHTML =
             '<span>' +
             u.ad +
             '</span>' +
 
             '<span>' +
-            u.fiyat +
+            u.fiyat.toLocaleString('tr-TR') +
             ' TL ' +
 
             '<button onclick="sil(' +
@@ -437,66 +440,16 @@ function sepetGoster() {
 
             '</span>';
 
-
-        l.appendChild(d);
+        liste.appendChild(div);
 
     });
-
 
     document.getElementById('toplam').textContent =
-        t.toLocaleString('tr-TR');
+        toplam.toLocaleString('tr-TR');
 
 }
 
 
-sepetGoster();function kategoriGoster(kategori) {
-
-    const urunler = document.querySelectorAll(".urun");
-
-    urunler.forEach(function(urun) {
-
-        const urunKategori = urun.getAttribute("data-kategori");
-
-        if (kategori === "hepsi") {
-
-            urun.style.display = "";
-
-        } else if (urunKategori === kategori) {
-
-            urun.style.display = "";
-
-        } else {
-
-            urun.style.display = "none";
-
-        }
-
-    });
-
-}
-    
-}
-function sepetGoster() {
-    document.getElementById('sepetSayi').textContent=sepet.length;
-    let l=document.getElementById('sepetListe');
-    if(!sepet.length) {
-        l.textContent='Sepetiniz boş.';
-        document.getElementById('toplam').textContent='0';
-        return
-    }
-    l.innerHTML='';
-    let t=0;
-    sepet.forEach((u,i)=> {
-        t+=u.fiyat;
-        let d=document.createElement('div');
-        d.className='sepet-item';
-        d.innerHTML='<span>'+u.ad+'</span><span>'+u.fiyat+' TL <button onclick="sil('+i+')">❌</button></span>';
-        l.appendChild(d)
-    }
-    );
-    document.getElementById('toplam').textContent=t.toLocaleString('tr-TR')
-}
 sepetGoster();
-  </script>
  </body>
 </html>
