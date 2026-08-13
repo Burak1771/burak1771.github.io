@@ -321,7 +321,7 @@ header {
    </div>
   </div>
   <script>
-   let sepet=JSON.parse(localStorage.getItem('sepet')||'[]');
+  
 let sepet = JSON.parse(
     localStorage.getItem('sepet') || '[]'
 );
@@ -366,33 +366,7 @@ function sil(i) {
 }
 
    
-function kategoriGoster(kategori) {
 
-    const urunler =
-        document.querySelectorAll('.urun');
-
-    urunler.forEach(function(urun) {
-
-        const urunKategori =
-            urun.getAttribute('data-kategori');
-
-        if (kategori === 'hepsi') {
-
-            urun.style.display = '';
-
-        } else if (urunKategori === kategori) {
-
-            urun.style.display = '';
-
-        } else {
-
-            urun.style.display = 'none';
-
-        }
-
-    });
-
-}
 function kategoriGoster(kategori) {
 
     const urunler =
