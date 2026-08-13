@@ -542,10 +542,6 @@
                 "green"
             );
 
-            setTimeout(function () {
-                window.location.href = "index.html";
-            }, 800);
-
         }
 
         catch (hata) {
@@ -579,6 +575,9 @@
         function (user) {
 
             if (user) {
+
+                window.location.replace("index.html");
+                return;
 
                 document
                     .getElementById("formlar")
