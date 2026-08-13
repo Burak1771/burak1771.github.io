@@ -31,6 +31,11 @@
     background: #111;
     color: #fff;
 }
+.kategoriler button.aktif {
+    background:#8b5e3c;
+    border-color:#8b5e3c;
+    color:#fff;
+}
    * {
     box-sizing:border-box;
 }
@@ -41,7 +46,7 @@ body {
     color:#222;
 }
 header {
-   background: #0066ff;
+   background: linear-gradient(135deg,#6f4428,#9c704e);
     color:#fff;
     padding:22px 6%;
     display:flex;
@@ -55,6 +60,16 @@ header a {
     color:#fff;
     text-decoration:none;
     margin-left:18px;
+}
+#cikisBtn {
+    margin-left:10px;
+    padding:7px 10px;
+    border:1px solid #fff;
+    border-radius:7px;
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    font-weight:bold;
 }
 .container {
     max-width:1200px;
@@ -79,8 +94,10 @@ header a {
 }
 .urun img {
     width:100%;
-    height:210px;
+    height:260px;
     object-fit:contain;
+    border-radius:10px;
+    background:#faf7f2;
 }
 .urun h2 {
     font-size:19px;
@@ -113,28 +130,11 @@ header a {
     border:0;
     border-radius:9px;
     padding:12px;
-    background:#ff6000;
+    background:#8b5e3c;
     color:#fff;
     font-size:16px;
     font-weight:bold;
     cursor:pointer;
-}
-#sepet {
-    margin-top:40px;
-    background:#fff;
-    border-radius:14px;
-    padding:22px;
-}
-.sepet-item {
-    display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-}
-.toplam {
-    font-size:22px;
-    font-weight:bold;
-    margin-top:15px;
 }
 @media (max-width:900px) {
     .urunler {
@@ -176,11 +176,13 @@ header a {
         İletişim
     </a>
 
-    <a href="uye.html">
+    <a id="uyeBaglanti" href="uye.html">
         👤 Üye Ol / Giriş Yap
     </a>
 
-    <a href="#sepet">
+    <button id="cikisBtn" type="button" hidden>Çıkış Yap</button>
+
+    <a href="sepet.html">
         🛒 Sepet (
         <span id="sepetSayi">0</span>
         )
@@ -193,24 +195,16 @@ header a {
 </h2>
 <div class="kategoriler">
 
-    <button type="button" onclick="kategoriGoster('hepsi')">
+    <button class="aktif" type="button" onclick="kategoriGoster('hepsi',this)">
         🛍️ Tüm Ürünler
     </button>
 
-    <button type="button" onclick="kategoriGoster('bileklik')">
+    <button type="button" onclick="kategoriGoster('bileklik',this)">
         🧿 El İşi Bileklik
     </button>
 
-    <button type="button" onclick="kategoriGoster('tablo')">
-        ⌨️ El işi Tablo
-    </button>
-
-    <button type="button" onclick="kategoriGoster('tablo')">
-        🖼️ El İşi Tablo 2
-    </button>
-
-    <button type="button" onclick="kategoriGoster('kulaklik')">
-        🎧 Kulaklık
+    <button type="button" onclick="kategoriGoster('tablo',this)">
+        🖼️ El İşi Tablo
     </button>
 
 </div>
@@ -240,120 +234,118 @@ header a {
      <div class="stok">
       🟢 Stokta Var
      </div>
-     <button class="sepet-btn" onclick="sepeteEkle(event,'El İşi Bileklik',265)">
+     <button class="sepet-btn" onclick="sepeteEkle(event,'El İşi Bileklik',265,'resim.jpg')">
       🛒 Sepete Ekle
      </button>
     </div>
-    <div class="urun" data-kategori="tablo" onclick="urunDetay('klavye')">
-     <img alt="El İşi Tablo" src="resim.jpg"/>
-     <h2>
-      El İşi Tablo
-     </h2>
-     <div class="puan">
-      ⭐⭐⭐⭐⭐ 4.7
-     </div>
-     <div class="eski-fiyat">
-      2.799 TL
-     </div>
-     <div class="fiyat">
-      2.299 TL
-     </div>
-     <span class="indirim">
-      %18 İndirim
-     </span>
-     <div class="stok">
-      🟢 Stokta Var
-     </div>
-     <button class="sepet-btn" onclick="sepeteEkle(event,'El İşi Tablo',2299)">
-      🛒 Sepete Ekle
-     </button>
-    </div>
-    <div class="urun" data-kategori="tablo" onclick="urunDetay('mousepad')">
-     <img alt="El İşi Tablo 2" src="resim.jpg"/>
-     <h2>
-      El İşi Tablo 2
-     </h2>
-     <div class="puan">
-      ⭐⭐⭐⭐⭐ 4.9
-     </div>
-     <div class="eski-fiyat">
-      899 TL
-     </div>
-     <div class="fiyat">
-      699 TL
-     </div>
-     <span class="indirim">
-      %22 İndirim
-     </span>
-     <div class="stok">
-      🟢 Stokta 40 adet
-     </div>
-     <button class="sepet-btn" onclick="sepeteEkle(event,'El İşi Tablo 2',699)">
-      🛒 Sepete Ekle
-     </button>
-    </div>
-    <div class="urun" data-kategori="kulaklik" onclick="urunDetay('kulaklik')">
-     <img alt="Gaming Kulaklık" src="resim.jpg"/>
-     <h2>
-      Gaming Kulaklık
-     </h2>
-     <div class="puan">
-      ⭐⭐⭐⭐☆ 4.6
-     </div>
-     <div class="eski-fiyat">
-      1.999 TL
-     </div>
-     <div class="fiyat">
-      1.599 TL
-     </div>
-     <span class="indirim">
-      %20 İndirim
-     </span>
-     <div class="stok">
-      🟢 Stokta 18 adet
-     </div>
-     <button class="sepet-btn" onclick="sepeteEkle(event,'Gaming Kulaklık',1599)">
-      🛒 Sepete Ekle
-     </button>
-    </div>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Zarif Hat Filografi Tablosu" src="tablo-01.png" loading="lazy"/>
+     <h2>Zarif Hat Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">2.299 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Zarif Hat Filografi Tablosu',2299,'tablo-01.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Turkuaz Hat Filografi Tablosu" src="tablo-02.png" loading="lazy"/>
+     <h2>Turkuaz Hat Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">3.499 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Turkuaz Hat Filografi Tablosu',3499,'tablo-02.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Lale Motifli Filografi Tablosu" src="tablo-03.png" loading="lazy"/>
+     <h2>Lale Motifli Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">1.899 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Lale Motifli Filografi Tablosu',1899,'tablo-03.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Siyah Zemin Hat Filografi Tablosu" src="tablo-04.png" loading="lazy"/>
+     <h2>Siyah Zemin Hat Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">3.299 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Siyah Zemin Hat Filografi Tablosu',3299,'tablo-04.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Geometrik Altın Filografi Tablosu" src="tablo-05.png" loading="lazy"/>
+     <h2>Geometrik Altın Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">2.799 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Geometrik Altın Filografi Tablosu',2799,'tablo-05.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Allah Lafzı Filografi Tablosu" src="tablo-06.png" loading="lazy"/>
+     <h2>Allah Lafzı Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">2.499 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Allah Lafzı Filografi Tablosu',2499,'tablo-06.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Bereket Duası Filografi Tablosu" src="tablo-07.png" loading="lazy"/>
+     <h2>Bereket Duası Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">2.999 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Bereket Duası Filografi Tablosu',2999,'tablo-07.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Yuvarlak Ahşap Filografi Tablosu" src="tablo-08.png" loading="lazy"/>
+     <h2>Yuvarlak Ahşap Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">3.799 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Yuvarlak Ahşap Filografi Tablosu',3799,'tablo-08.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Turkuaz Besmele Filografi Tablosu" src="tablo-09.png" loading="lazy"/>
+     <h2>Turkuaz Besmele Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">3.299 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Turkuaz Besmele Filografi Tablosu',3299,'tablo-09.png')">🛒 Sepete Ekle</button>
+    </article>
+    <article class="urun" data-kategori="tablo">
+     <img alt="Gümüş Zemin Hat Filografi Tablosu" src="tablo-10.png" loading="lazy"/>
+     <h2>Gümüş Zemin Hat Filografi Tablosu</h2>
+     <div class="puan">⭐⭐⭐⭐⭐ 5.0</div>
+     <div class="fiyat">2.899 TL</div>
+     <div class="stok">🟢 Stokta Var</div>
+     <button class="sepet-btn" onclick="sepeteEkle(event,'Gümüş Zemin Hat Filografi Tablosu',2899,'tablo-10.png')">🛒 Sepete Ekle</button>
+    </article>
    </div>
-   <div id="sepet">
-    <h2>
-     🛒 Sepetim
-    </h2>
-    <div id="sepetListe">
-     Sepetiniz boş.
-    </div>
-    <div class="toplam">
-     Toplam:
-     <span id="toplam">
-      0
-     </span>
-     TL
-    </div>
-   </div>
-  </div>
-  <script>
-   let sepet=JSON.parse(localStorage.getItem('sepet')||'[]');
+	  </div>
+	  <script>
+let sepet = [];
+try {
+    sepet = JSON.parse(localStorage.getItem('sepet') || '[]');
+    if (!Array.isArray(sepet)) sepet = [];
+} catch (hata) {
+    sepet = [];
+}
 function urunDetay(id) {
     location.href='urun.html?urun='+id
 }
-function sepeteEkle(e,ad,fiyat) {
+function sepeteEkle(e,ad,fiyat,resim) {
     e.stopPropagation();
     sepet.push( {
-        ad,fiyat
+        ad,fiyat,resim
     }
     );
     localStorage.setItem('sepet',JSON.stringify(sepet));
     sepetGoster()
 }
-function sil(i) {
-    sepet.splice(i,1);
-    localStorage.setItem('sepet',JSON.stringify(sepet));
-    sepetGoster();
-}
+function kategoriGoster(kategori, buton) {
 
-function kategoriGoster(kategori) {
+    document.querySelectorAll('.kategoriler button').forEach(function (b) {
+        b.classList.remove('aktif');
+    });
+    if (buton) buton.classList.add('aktif');
 
     const urunler = document.querySelectorAll(".urun");
 
@@ -380,25 +372,48 @@ function kategoriGoster(kategori) {
 }
 function sepetGoster() {
     document.getElementById('sepetSayi').textContent=sepet.length;
-    let l=document.getElementById('sepetListe');
-    if(!sepet.length) {
-        l.textContent='Sepetiniz boş.';
-        document.getElementById('toplam').textContent='0';
-        return
-    }
-    l.innerHTML='';
-    let t=0;
-    sepet.forEach((u,i)=> {
-        t+=u.fiyat;
-        let d=document.createElement('div');
-        d.className='sepet-item';
-        d.innerHTML='<span>'+u.ad+'</span><span>'+u.fiyat+' TL <button onclick="sil('+i+')">❌</button></span>';
-        l.appendChild(d)
-    }
-    );
-    document.getElementById('toplam').textContent=t.toLocaleString('tr-TR')
 }
 sepetGoster();
+	  </script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDKpEI_TzDxA38N30BEjMScnl0GnYabl3c",
+        authDomain: "elaystore-c4d53.firebaseapp.com",
+        projectId: "elaystore-c4d53",
+        storageBucket: "elaystore-c4d53.firebasestorage.app",
+        messagingSenderId: "585341292448",
+        appId: "1:585341292448:web:51ace255ab2fcf89b21ec5",
+        measurementId: "G-YMS32EVTTH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const uyeBaglanti = document.getElementById("uyeBaglanti");
+    const cikisBtn = document.getElementById("cikisBtn");
+
+    onAuthStateChanged(auth, function (user) {
+        if (user) {
+            const ad = user.displayName || user.email.split("@")[0];
+            uyeBaglanti.textContent = "👋 Hoş geldin, " + ad;
+            uyeBaglanti.removeAttribute("href");
+            cikisBtn.hidden = false;
+        } else {
+            uyeBaglanti.textContent = "👤 Üye Ol / Giriş Yap";
+            uyeBaglanti.href = "uye.html";
+            cikisBtn.hidden = true;
+        }
+    });
+
+    cikisBtn.addEventListener("click", async function () {
+        await signOut(auth);
+    });
   </script>
- </body>
+	 </body>
 </html>
