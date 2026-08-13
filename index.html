@@ -352,7 +352,6 @@ function sepeteEkle(e, ad, fiyat) {
 
 }
 
-
 function sil(i) {
 
     sepet.splice(i, 1);
@@ -366,36 +365,14 @@ function sil(i) {
 
 }
 
-
 function kategoriGoster(kategori) {
 
     const urunler =
         document.querySelectorAll('.urun');
 
+    // devamı...
+}
 
-    urunler.forEach(function(urun) {
-
-        const urunKategori =
-            urun.getAttribute('data-kategori');
-
-
-        if (kategori === 'hepsi') {
-
-            urun.style.display = '';
-
-        }
-
-        else if (urunKategori === kategori) {
-
-            urun.style.display = '';
-
-        }
-
-        else {
-
-            urun.style.display = 'none';
-
-        }
 
     });
 
