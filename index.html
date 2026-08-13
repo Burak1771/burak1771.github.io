@@ -60,14 +60,13 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             background: white;
-            color: #222;
             cursor: pointer;
             font-size: 15px;
             font-weight: bold;
         }
 
         .kategoriler button:hover {
-            background: #111;
+            background: #0066ff;
             color: white;
         }
 
@@ -109,15 +108,6 @@
             margin: 6px 0;
         }
 
-        .indirim {
-            display: inline-block;
-            background: #e8fff0;
-            color: #159447;
-            padding: 5px 8px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
         .stok {
             color: #159447;
             margin: 12px 0;
@@ -145,7 +135,7 @@
         .sepet-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
         }
 
@@ -156,15 +146,12 @@
         }
 
         @media (max-width: 900px) {
-
             .urunler {
                 grid-template-columns: repeat(2, 1fr);
             }
-
         }
 
         @media (max-width: 600px) {
-
             .urunler {
                 grid-template-columns: 1fr;
             }
@@ -176,16 +163,13 @@
             nav {
                 justify-content: center;
             }
-
         }
 
     </style>
-
 </head>
 
 
 <body>
-
 
 <header>
 
@@ -193,17 +177,16 @@
 
     <nav>
 
-        <a href="index.html">
-            Ürünler
-        </a>
+        <a href="index.html">Ürünler</a>
 
-        <a href="uye.html">
-            👤 Üye Ol / Giriş Yap
-        </a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+
+        <a href="iletisim.html">İletişim</a>
+
+        <a href="uye.html">👤 Üye Ol / Giriş Yap</a>
 
         <a href="#sepet">
-            🛒 Sepet
-            (<span id="sepetSayi">0</span>)
+            🛒 Sepet (<span id="sepetSayi">0</span>)
         </a>
 
     </nav>
@@ -213,36 +196,31 @@
 
 <div class="container">
 
-
-    <h2>
-        Ürün Kategorileri
-    </h2>
+    <h2>Ürün Kategorileri</h2>
 
 
     <div class="kategoriler">
 
-        <button onclick="kategoriGoster('hepsi')">
+        <button type="button" onclick="kategoriGoster('hepsi')">
             🛍️ Tüm Ürünler
         </button>
 
-        <button onclick="kategoriGoster('bileklik')">
+        <button type="button" onclick="kategoriGoster('bileklik')">
             🧿 El İşi Bileklik
         </button>
 
-        <button onclick="kategoriGoster('tablo')">
+        <button type="button" onclick="kategoriGoster('tablo')">
             🖼️ El İşi Tablo
         </button>
 
-        <button onclick="kategoriGoster('kulaklik')">
+        <button type="button" onclick="kategoriGoster('kulaklik')">
             🎧 Kulaklık
         </button>
 
     </div>
 
 
-    <h2>
-        Ürünler
-    </h2>
+    <h2>Ürünler</h2>
 
 
     <div class="urunler">
@@ -254,9 +232,7 @@
 
             <img src="resim.jpg" alt="El İşi Bileklik">
 
-            <h2>
-                El İşi Bileklik
-            </h2>
+            <h2>El İşi Bileklik</h2>
 
             <div class="puan">
                 ⭐⭐⭐⭐⭐ 4.8
@@ -270,16 +246,13 @@
                 265 TL
             </div>
 
-            <span class="indirim">
-                İndirim
-            </span>
-
             <div class="stok">
                 🟢 Stokta Var
             </div>
 
             <button
                 class="sepet-btn"
+                type="button"
                 onclick="sepeteEkle(event, 'El İşi Bileklik', 265)"
             >
                 🛒 Sepete Ekle
@@ -294,9 +267,7 @@
 
             <img src="resim.jpg" alt="El İşi Tablo">
 
-            <h2>
-                El İşi Tablo
-            </h2>
+            <h2>El İşi Tablo</h2>
 
             <div class="puan">
                 ⭐⭐⭐⭐⭐ 4.7
@@ -310,16 +281,13 @@
                 2.299 TL
             </div>
 
-            <span class="indirim">
-                %18 İndirim
-            </span>
-
             <div class="stok">
                 🟢 Stokta Var
             </div>
 
             <button
                 class="sepet-btn"
+                type="button"
                 onclick="sepeteEkle(event, 'El İşi Tablo', 2299)"
             >
                 🛒 Sepete Ekle
@@ -334,9 +302,7 @@
 
             <img src="resim.jpg" alt="El İşi Tablo 2">
 
-            <h2>
-                El İşi Tablo 2
-            </h2>
+            <h2>El İşi Tablo 2</h2>
 
             <div class="puan">
                 ⭐⭐⭐⭐⭐ 4.9
@@ -350,16 +316,13 @@
                 699 TL
             </div>
 
-            <span class="indirim">
-                %22 İndirim
-            </span>
-
             <div class="stok">
                 🟢 Stokta 40 adet
             </div>
 
             <button
                 class="sepet-btn"
+                type="button"
                 onclick="sepeteEkle(event, 'El İşi Tablo 2', 699)"
             >
                 🛒 Sepete Ekle
@@ -374,9 +337,7 @@
 
             <img src="resim.jpg" alt="Gaming Kulaklık">
 
-            <h2>
-                Gaming Kulaklık
-            </h2>
+            <h2>Gaming Kulaklık</h2>
 
             <div class="puan">
                 ⭐⭐⭐⭐☆ 4.6
@@ -390,16 +351,13 @@
                 1.599 TL
             </div>
 
-            <span class="indirim">
-                %20 İndirim
-            </span>
-
             <div class="stok">
                 🟢 Stokta 18 adet
             </div>
 
             <button
                 class="sepet-btn"
+                type="button"
                 onclick="sepeteEkle(event, 'Gaming Kulaklık', 1599)"
             >
                 🛒 Sepete Ekle
@@ -415,9 +373,7 @@
 
     <div id="sepet">
 
-        <h2>
-            🛒 Sepetim
-        </h2>
+        <h2>🛒 Sepetim</h2>
 
         <div id="sepetListe">
             Sepetiniz boş.
@@ -426,155 +382,162 @@
         <div class="toplam">
 
             Toplam:
-            <span id="toplam">0</span>
-            TL
+            <span id="toplam">0</span> TL
 
         </div>
 
     </div>
-
 
 </div>
 
 
 <script>
 
-let sepet = JSON.parse(
-    localStorage.getItem("sepet") || "[]"
-);
-
-
-function sepeteEkle(event, ad, fiyat) {
-
-    event.stopPropagation();
-
-    sepet.push({
-        ad: ad,
-        fiyat: fiyat
-    });
-
-    localStorage.setItem(
-        "sepet",
-        JSON.stringify(sepet)
+    let sepet = JSON.parse(
+        localStorage.getItem("sepet") || "[]"
     );
 
-    sepetGoster();
 
-}
+    /* KATEGORİ FİLTRESİ */
 
+    function kategoriGoster(kategori) {
 
-function sil(index) {
+        const urunler =
+            document.querySelectorAll(".urun");
 
-    sepet.splice(index, 1);
+        urunler.forEach(function(urun) {
 
-    localStorage.setItem(
-        "sepet",
-        JSON.stringify(sepet)
-    );
+            const urunKategori =
+                urun.getAttribute("data-kategori");
 
-    sepetGoster();
+            if (
+                kategori === "hepsi" ||
+                urunKategori === kategori
+            ) {
 
-}
+                urun.style.display = "block";
 
+            } else {
 
-function kategoriGoster(kategori) {
+                urun.style.display = "none";
 
-    const urunler =
-        document.querySelectorAll(".urun");
+            }
 
-    urunler.forEach(function(urun) {
-
-        const urunKategori =
-            urun.getAttribute("data-kategori");
-
-        if (
-            kategori === "hepsi" ||
-            urunKategori === kategori
-        ) {
-
-            urun.style.display = "";
-
-        } else {
-
-            urun.style.display = "none";
-
-        }
-
-    });
-
-}
-
-
-function sepetGoster() {
-
-    const sayi =
-        document.getElementById("sepetSayi");
-
-    const liste =
-        document.getElementById("sepetListe");
-
-    const toplam =
-        document.getElementById("toplam");
-
-
-    sayi.textContent = sepet.length;
-
-
-    if (sepet.length === 0) {
-
-        liste.textContent = "Sepetiniz boş.";
-
-        toplam.textContent = "0";
-
-        return;
+        });
 
     }
 
 
-    liste.innerHTML = "";
+    /* SEPETE EKLE */
 
-    let toplamFiyat = 0;
+    function sepeteEkle(event, ad, fiyat) {
 
+        event.stopPropagation();
 
-    sepet.forEach(function(urun, index) {
+        sepet.push({
+            ad: ad,
+            fiyat: fiyat
+        });
 
-        toplamFiyat += urun.fiyat;
+        localStorage.setItem(
+            "sepet",
+            JSON.stringify(sepet)
+        );
 
+        sepetGoster();
 
-        const div =
-            document.createElement("div");
-
-        div.className = "sepet-item";
-
-
-        div.innerHTML =
-            "<span>" +
-            urun.ad +
-            "</span>" +
-
-            "<span>" +
-            urun.fiyat.toLocaleString("tr-TR") +
-            " TL " +
-
-            "<button onclick='sil(" +
-            index +
-            ")'>❌</button>" +
-
-            "</span>";
+    }
 
 
-        liste.appendChild(div);
+    /* SEPETTEN SİL */
 
-    });
+    function sil(index) {
+
+        sepet.splice(index, 1);
+
+        localStorage.setItem(
+            "sepet",
+            JSON.stringify(sepet)
+        );
+
+        sepetGoster();
+
+    }
 
 
-    toplam.textContent =
-        toplamFiyat.toLocaleString("tr-TR");
+    /* SEPETİ GÖSTER */
 
-}
+    function sepetGoster() {
+
+        document.getElementById("sepetSayi").textContent =
+            sepet.length;
+
+        const liste =
+            document.getElementById("sepetListe");
+
+        const toplam =
+            document.getElementById("toplam");
 
 
-sepetGoster();
+        if (sepet.length === 0) {
+
+            liste.textContent =
+                "Sepetiniz boş.";
+
+            toplam.textContent =
+                "0";
+
+            return;
+
+        }
+
+
+        liste.innerHTML = "";
+
+        let toplamFiyat = 0;
+
+
+        sepet.forEach(function(urun, index) {
+
+            toplamFiyat += urun.fiyat;
+
+
+            const div =
+                document.createElement("div");
+
+            div.className = "sepet-item";
+
+
+            div.innerHTML =
+                "<span>" +
+                urun.ad +
+                "</span>" +
+
+                "<span>" +
+                urun.fiyat.toLocaleString("tr-TR") +
+                " TL " +
+
+                "<button onclick='sil(" +
+                index +
+                ")'>❌</button>" +
+
+                "</span>";
+
+
+            liste.appendChild(div);
+
+        });
+
+
+        toplam.textContent =
+            toplamFiyat.toLocaleString("tr-TR");
+
+    }
+
+
+    /* SAYFA AÇILDIĞINDA */
+
+    sepetGoster();
 
 </script>
 
