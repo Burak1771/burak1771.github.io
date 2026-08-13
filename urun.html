@@ -1,360 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Ürün Detayı</title>
-
-
-    <style>
-
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f5f5f5;
-            color: #222;
-        }
-
-        header {
-            background: #0066ff;
-            padding: 20px 6%;
-        }
-
-        header a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .detay {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 16px;
-            padding: 35px;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 45px;
-        }
-
-        .resim img {
-            width: 100%;
-            height: 450px;
-            object-fit: contain;
-        }
-
-        h1 {
-            font-size: 36px;
-        }
-
-        .puan {
-            color: #f2a900;
-            font-size: 18px;
-        }
-
-        .eski {
-            text-decoration: line-through;
-            color: #999;
-        }
-
-        .fiyat {
-            font-size: 34px;
-            font-weight: bold;
-        }
-
-        .stok {
-            color: #159447;
-        }
-
-        .ozellikler {
-            border-top: 1px solid #ddd;
-            margin-top: 25px;
-            padding-top: 15px;
-        }
-
-        .ozellikler li {
-            margin: 12px 0;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            border: 0;
-            border-radius: 10px;
-            background: #ff6000;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 700px) {
-
-            .detay {
-                grid-template-columns: 1fr;
-                margin: 20px;
-                padding: 20px;
-            }
-
-            .resim img {
-                height: 300px;
-            }
-
-        }
-
-    </style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ürün Detayı</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#f5f3f1;color:#222}
+    header{background:#9a663f;padding:18px 6%} header a{color:#fff;text-decoration:none;font-weight:700}
+    .detay{max-width:1050px;margin:35px auto;background:#fff;border-radius:18px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:42px;box-shadow:0 6px 24px #00000012}
+    .resim img{width:100%;height:500px;object-fit:contain;background:#faf8f5;border-radius:14px}
+    h1{font-size:34px;margin-top:8px}.puan{color:#e7a900;font-size:19px}.eski{text-decoration:line-through;color:#999;margin-top:14px}.fiyat{font-size:34px;font-weight:700;margin:5px 0}.stok{color:#159447;font-size:18px;margin:14px 0}
+    .ozellikler{border-top:1px solid #ddd;margin-top:24px;padding-top:12px}.ozellikler li{margin:12px 0}
+    button{width:100%;padding:15px;border:0;border-radius:10px;background:#9a663f;color:#fff;font-size:18px;font-weight:700;cursor:pointer;margin-top:18px}
+    @media(max-width:700px){.detay{grid-template-columns:1fr;margin:16px;padding:20px}.resim img{height:340px}h1{font-size:28px}}
+  </style>
 </head>
-
-
 <body>
-
-
-    <header>
-
-        <a href="index.html">
-            ← Ürünlere Dön
-        </a>
-
-    </header>
-
-
-    <div class="detay">
-
-
-        <div class="resim">
-
-            <img
-                id="resim"
-                src="resim.jpg"
-            >
-
-        </div>
-
-
-        <div>
-
-            <h1 id="ad"></h1>
-
-            <div
-                class="puan"
-                id="puan"
-            ></div>
-
-            <div
-                class="eski"
-                id="eski"
-            ></div>
-
-            <div
-                class="fiyat"
-                id="fiyat"
-            ></div>
-
-            <div
-                class="stok"
-                id="stok"
-            ></div>
-
-
-            <div class="ozellikler">
-
-                <h2>
-                    Ürün Özellikleri
-                </h2>
-
-                <ul id="ozellik"></ul>
-
-            </div>
-
-
-            <button onclick="sepeteEkle()">
-                🛒 Sepete Ekle
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-
-        const u = {
-
-            mouse: {
-
-                ad: 'El İşi Bileklik',
-
-                fiyat: 265,
-
-                eski: '350 TL',
-               
-                puan: '⭐⭐⭐⭐⭐ 4.8 / 5',
-
-                stok: '🟢 Stokta 25 adet',
-
-                oz: [
-                    ' Bileğe Göre Boyutlar',
-                    ' Çeşit Çeşit renk'
-                ]
-
-            },
-
-
-            klavye: {
-
-                ad: 'RGB Gaming Klavye',
-
-                fiyat: 2299,
-
-                eski: '2.799 TL',
-
-                puan: '⭐⭐⭐⭐⭐ 4.7 / 5',
-
-                stok: '🟢 Stokta 12 adet',
-
-                oz: [
-                    '⌨️ Gaming klavye',
-                    '🌈 RGB aydınlatma',
-                    '⚡ Hızlı tepki',
-                    '🎮 Oyuncu tasarımı',
-                    '🔌 USB bağlantı',
-                    '🖤 Dayanıklı tuşlar'
-                ]
-
-            },
-
-
-            mousepad: {
-
-                ad: '90x40 Gaming Mouse Pad',
-
-                fiyat: 699,
-
-                eski: '899 TL',
-
-                puan: '⭐⭐⭐⭐⭐ 4.9 / 5',
-
-                stok: '🟢 Stokta 40 adet',
-
-                oz: [
-                    '📏 90x40 cm',
-                    '🖱️ Gaming mouse pad',
-                    '💧 Suya dayanıklı yüzey',
-                    '⚡ Hassas mouse hareketi',
-                    '⬛ Kaymaz taban',
-                    '🎮 Oyuncular için uygun'
-                ]
-
-            },
-
-
-            kulaklik: {
-
-                ad: 'Gaming Kulaklık',
-
-                fiyat: 1599,
-
-                eski: '1.999 TL',
-
-                puan: '⭐⭐⭐⭐☆ 4.6 / 5',
-
-                stok: '🟢 Stokta 18 adet',
-
-                oz: [
-                    '🎧 Gaming kulaklık',
-                    '🔊 Yüksek ses kalitesi',
-                    '🎤 Dahili mikrofon',
-                    '🎮 Oyuncu tasarımı',
-                    '🔌 USB bağlantı',
-                    '🎵 Stereo ses'
-                ]
-
-            }
-
-        };
-
-
-        const id =
-            new URLSearchParams(location.search).get('urun') || 'mouse';
-
-
-        const p =
-            u[id] || u.mouse;
-
-
-        ad.textContent =
-            p.ad;
-
-
-        fiyat.textContent =
-            p.fiyat.toLocaleString('tr-TR') + ' TL';
-
-
-        eski.textContent =
-            p.eski;
-
-
-        puan.textContent =
-            p.puan;
-
-
-        stok.textContent =
-            p.stok;
-
-
-        p.oz.forEach(function (x) {
-
-            let li =
-                document.createElement('li');
-
-            li.textContent =
-                x;
-
-            ozellik.appendChild(li);
-
-        });
-
-
-        function sepeteEkle() {
-
-            let s =
-                JSON.parse(
-                    localStorage.getItem('sepet') || '[]'
-                );
-
-
-            s.push({
-                ad: p.ad,
-                fiyat: p.fiyat
-            });
-
-
-            localStorage.setItem(
-                'sepet',
-                JSON.stringify(s)
-            );
-
-
-            alert(
-                p.ad + ' sepete eklendi! 🛒'
-            );
-
-        }
-
-
-    </script>
-
-
+  <header><a href="index.html">← Ürünlere Dön</a></header>
+  <main class="detay">
+    <div class="resim"><img id="resim" alt="Ürün fotoğrafı"></div>
+    <section>
+      <h1 id="ad"></h1><div class="puan" id="puan"></div><div class="eski" id="eski"></div>
+      <div class="fiyat" id="fiyat"></div><div class="stok" id="stok"></div>
+      <div class="ozellikler"><h2>Ürün Özellikleri</h2><ul id="ozellik"></ul></div>
+      <button type="button" onclick="sepeteEkle()">🛒 Sepete Ekle</button>
+    </section>
+  </main>
+  <script>
+    const ortakOzellikler=['El işçiliğiyle hazırlanmıştır','Filografi çivi ve tel tekniği kullanılmıştır','Sipariş ve ölçü bilgisi için iletişime geçebilirsiniz'];
+    const urunler={
+      mouse:{ad:'El İşi Bileklik',fiyat:265,eski:'350 TL',resim:'resim.jpg',puan:'⭐⭐⭐⭐⭐ 4.8 / 5',stok:'🟢 Stokta Var',oz:['Bileğe göre hazırlanabilir','Farklı renk seçenekleri vardır']},
+      tablo01:{ad:'Zarif Hat Filografi Tablosu',fiyat:2299,resim:'tablo-01.png'},
+      tablo02:{ad:'Turkuaz Hat Filografi Tablosu',fiyat:3499,resim:'tablo-02.png'},
+      tablo03:{ad:'Lale Motifli Filografi Tablosu',fiyat:1899,resim:'tablo-03.png'},
+      tablo04:{ad:'Siyah Zemin Hat Filografi Tablosu',fiyat:3299,resim:'tablo-04.png'},
+      tablo05:{ad:'Geometrik Altın Filografi Tablosu',fiyat:2799,resim:'tablo-05.png'},
+      tablo06:{ad:'Allah Lafzı Filografi Tablosu',fiyat:2499,resim:'tablo-06.png'},
+      tablo07:{ad:'Bereket Duası Filografi Tablosu',fiyat:2999,resim:'tablo-07.png'},
+      tablo08:{ad:'Yuvarlak Ahşap Filografi Tablosu',fiyat:3799,resim:'tablo-08.png'},
+      tablo09:{ad:'Turkuaz Besmele Filografi Tablosu',fiyat:3299,resim:'tablo-09.png'},
+      tablo10:{ad:'Gümüş Zemin Hat Filografi Tablosu',fiyat:2899,resim:'tablo-10.png'}
+    };
+    const id=new URLSearchParams(location.search).get('urun')||'mouse';
+    const p=urunler[id]||urunler.mouse;
+    if(!p.puan)p.puan='⭐⭐⭐⭐⭐ 5.0 / 5'; if(!p.stok)p.stok='🟢 Stokta Var'; if(!p.oz)p.oz=ortakOzellikler;
+    document.getElementById('ad').textContent=p.ad; document.getElementById('fiyat').textContent=p.fiyat.toLocaleString('tr-TR')+' TL';
+    document.getElementById('eski').textContent=p.eski||''; document.getElementById('puan').textContent=p.puan; document.getElementById('stok').textContent=p.stok;
+    document.getElementById('resim').src=p.resim; document.getElementById('resim').alt=p.ad;
+    p.oz.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('ozellik').appendChild(li)});
+    function sepeteEkle(){let s=[];try{s=JSON.parse(localStorage.getItem('sepet')||'[]');if(!Array.isArray(s))s=[]}catch(e){s=[]}s.push({ad:p.ad,fiyat:p.fiyat,resim:p.resim});localStorage.setItem('sepet',JSON.stringify(s));alert(p.ad+' sepete eklendi! 🛒')}
+  </script>
 </body>
-
 </html>
