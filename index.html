@@ -322,22 +322,155 @@ header {
   </div>
   <script>
    let sepet=JSON.parse(localStorage.getItem('sepet')||'[]');
+let sepet = JSON.parse(
+    localStorage.getItem('sepet') || '[]'
+);
+
+
 function urunDetay(id) {
-    location.href='urun.html?urun='+id
+
+    location.href = 'urun.html?urun=' + id;
+
 }
-function sepeteEkle(e,ad,fiyat) {
+
+
+function sepeteEkle(e, ad, fiyat) {
+
     e.stopPropagation();
-    sepet.push( {
-        ad,fiyat
-    }
+
+    sepet.push({
+        ad: ad,
+        fiyat: fiyat
+    });
+
+    localStorage.setItem(
+        'sepet',
+        JSON.stringify(sepet)
     );
-    localStorage.setItem('sepet',JSON.stringify(sepet));
-    sepetGoster()
+
+    sepetGoster();
+
 }
+
+
 function sil(i) {
-    sepet.splice(i,1);
-    localStorage.setItem('sepet',JSON.stringify(sepet));
-    sepetGoster();function kategoriGoster(kategori) {
+
+    sepet.splice(i, 1);
+
+    localStorage.setItem(
+        'sepet',
+        JSON.stringify(sepet)
+    );
+
+    sepetGoster();
+
+}
+
+
+function kategoriGoster(kategori) {
+
+    const urunler =
+        document.querySelectorAll('.urun');
+
+
+    urunler.forEach(function(urun) {
+
+        const urunKategori =
+            urun.getAttribute('data-kategori');
+
+
+        if (kategori === 'hepsi') {
+
+            urun.style.display = '';
+
+        }
+
+        else if (urunKategori === kategori) {
+
+            urun.style.display = '';
+
+        }
+
+        else {
+
+            urun.style.display = 'none';
+
+        }
+
+    });
+
+}
+
+
+function sepetGoster() {
+
+    document.getElementById('sepetSayi').textContent =
+        sepet.length;
+
+
+    let l =
+        document.getElementById('sepetListe');
+
+
+    if (!sepet.length) {
+
+        l.textContent =
+            'Sepetiniz boş.';
+
+        document.getElementById('toplam').textContent =
+            '0';
+
+        return;
+
+    }
+
+
+    l.innerHTML = '';
+
+    let t = 0;
+
+
+    sepet.forEach(function(u, i) {
+
+        t += u.fiyat;
+
+
+        let d =
+            document.createElement('div');
+
+
+        d.className =
+            'sepet-item';
+
+
+        d.innerHTML =
+            '<span>' +
+            u.ad +
+            '</span>' +
+
+            '<span>' +
+            u.fiyat +
+            ' TL ' +
+
+            '<button onclick="sil(' +
+            i +
+            ')">❌</button>' +
+
+            '</span>';
+
+
+        l.appendChild(d);
+
+    });
+
+
+    document.getElementById('toplam').textContent =
+        t.toLocaleString('tr-TR');
+
+}
+
+
+sepetGoster();function kategoriGoster(kategori) {
 
     const urunler = document.querySelectorAll(".urun");
 
