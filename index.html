@@ -2,12 +2,10 @@
 <html lang="tr">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TEST SİTESİ</title>
+    <title>Elay Store</title>
 
     <style>
 
@@ -42,10 +40,6 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
         }
 
         .container {
@@ -88,12 +82,6 @@
             border-radius: 14px;
             padding: 18px;
             box-shadow: 0 3px 15px #00000012;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .urun:hover {
-            transform: translateY(-4px);
         }
 
         .urun img {
@@ -128,7 +116,6 @@
             padding: 5px 8px;
             border-radius: 6px;
             font-size: 13px;
-            margin-top: 5px;
         }
 
         .stok {
@@ -148,10 +135,6 @@
             cursor: pointer;
         }
 
-        .sepet-btn:hover {
-            background: #e65300;
-        }
-
         #sepet {
             margin-top: 40px;
             background: white;
@@ -162,16 +145,8 @@
         .sepet-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
-        }
-
-        .sil-btn {
-            border: 0;
-            background: transparent;
-            cursor: pointer;
-            font-size: 18px;
         }
 
         .toplam {
@@ -227,9 +202,8 @@
         </a>
 
         <a href="#sepet">
-            🛒 Sepet (
-            <span id="sepetSayi">0</span>
-            )
+            🛒 Sepet
+            (<span id="sepetSayi">0</span>)
         </a>
 
     </nav>
@@ -276,16 +250,9 @@
 
         <!-- BİLEKLİK -->
 
-        <div
-            class="urun"
-            data-kategori="bileklik"
-            onclick="urunDetay('mouse')"
-        >
+        <div class="urun" data-kategori="bileklik">
 
-            <img
-                src="resim.jpg"
-                alt="El İşi Bileklik"
-            >
+            <img src="resim.jpg" alt="El İşi Bileklik">
 
             <h2>
                 El İşi Bileklik
@@ -321,18 +288,11 @@
         </div>
 
 
-        <!-- EL İŞİ TABLO -->
+        <!-- TABLO -->
 
-        <div
-            class="urun"
-            data-kategori="tablo"
-            onclick="urunDetay('klavye')"
-        >
+        <div class="urun" data-kategori="tablo">
 
-            <img
-                src="resim.jpg"
-                alt="El İşi Tablo"
-            >
+            <img src="resim.jpg" alt="El İşi Tablo">
 
             <h2>
                 El İşi Tablo
@@ -368,18 +328,11 @@
         </div>
 
 
-        <!-- MOUSE PAD -->
+        <!-- TABLO 2 -->
 
-        <div
-            class="urun"
-            data-kategori="tablo"
-            onclick="urunDetay('mousepad')"
-        >
+        <div class="urun" data-kategori="tablo">
 
-            <img
-                src="resim.jpg"
-                alt="El İşi Tablo"
-            >
+            <img src="resim.jpg" alt="El İşi Tablo 2">
 
             <h2>
                 El İşi Tablo 2
@@ -417,16 +370,9 @@
 
         <!-- KULAKLIK -->
 
-        <div
-            class="urun"
-            data-kategori="kulaklik"
-            onclick="urunDetay('kulaklik')"
-        >
+        <div class="urun" data-kategori="kulaklik">
 
-            <img
-                src="resim.jpg"
-                alt="Kulaklık"
-            >
+            <img src="resim.jpg" alt="Gaming Kulaklık">
 
             <h2>
                 Gaming Kulaklık
@@ -480,11 +426,7 @@
         <div class="toplam">
 
             Toplam:
-
-            <span id="toplam">
-                0
-            </span>
-
+            <span id="toplam">0</span>
             TL
 
         </div>
@@ -502,27 +444,13 @@ let sepet = JSON.parse(
 );
 
 
-// ÜRÜN DETAYI
-
-function urunDetay(id) {
-
-    window.location.href =
-        "urun.html?urun=" + id;
-
-}
-
-
-// SEPETE EKLE
-
 function sepeteEkle(event, ad, fiyat) {
 
     event.stopPropagation();
 
     sepet.push({
-
         ad: ad,
         fiyat: fiyat
-
     });
 
     localStorage.setItem(
@@ -534,8 +462,6 @@ function sepeteEkle(event, ad, fiyat) {
 
 }
 
-
-// SEPETTEN SİL
 
 function sil(index) {
 
@@ -550,8 +476,6 @@ function sil(index) {
 
 }
 
-
-// KATEGORİLER
 
 function kategoriGoster(kategori) {
 
@@ -581,8 +505,6 @@ function kategoriGoster(kategori) {
 }
 
 
-// SEPETİ GÖSTER
-
 function sepetGoster() {
 
     const sayi =
@@ -595,17 +517,14 @@ function sepetGoster() {
         document.getElementById("toplam");
 
 
-    sayi.textContent =
-        sepet.length;
+    sayi.textContent = sepet.length;
 
 
     if (sepet.length === 0) {
 
-        liste.textContent =
-            "Sepetiniz boş.";
+        liste.textContent = "Sepetiniz boş.";
 
-        toplam.textContent =
-            "0";
+        toplam.textContent = "0";
 
         return;
 
@@ -613,7 +532,6 @@ function sepetGoster() {
 
 
     liste.innerHTML = "";
-
 
     let toplamFiyat = 0;
 
@@ -626,28 +544,21 @@ function sepetGoster() {
         const div =
             document.createElement("div");
 
-        div.className =
-            "sepet-item";
+        div.className = "sepet-item";
 
 
         div.innerHTML =
-
             "<span>" +
             urun.ad +
             "</span>" +
 
             "<span>" +
-
             urun.fiyat.toLocaleString("tr-TR") +
             " TL " +
 
-            "<button class='sil-btn' onclick='sil(" +
+            "<button onclick='sil(" +
             index +
-            ")'>" +
-
-            "❌" +
-
-            "</button>" +
+            ")'>❌</button>" +
 
             "</span>";
 
@@ -662,8 +573,6 @@ function sepetGoster() {
 
 }
 
-
-// SAYFA AÇILINCA
 
 sepetGoster();
 
