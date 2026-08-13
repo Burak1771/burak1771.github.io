@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -6,15 +5,15 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ürün Kategorileri</title>
-
+    <title>Elay Store</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
@@ -23,88 +22,184 @@
             color: #222;
         }
 
-
         header {
-            background: #111;
-            padding: 20px 6%;
+            background: #0066ff;
+            color: white;
+            padding: 22px 6%;
         }
 
+        header h1 {
+            margin: 0 0 15px 0;
+        }
 
-        header a {
-            color: #fff;
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: white;
             text-decoration: none;
-            font-size: 18px;
             font-weight: bold;
         }
 
+        nav a:hover {
+            text-decoration: underline;
+        }
 
         .container {
-            max-width: 1100px;
-            margin: 40px auto;
+            max-width: 1200px;
+            margin: 35px auto;
             padding: 0 20px;
         }
 
-
-        h1 {
-            text-align: center;
-            margin-bottom: 35px;
+        .kategoriler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 30px;
         }
 
+        .kategoriler button {
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            color: #222;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
 
-        .kategoriler {
+        .kategoriler button:hover {
+            background: #111;
+            color: white;
+        }
+
+        .urunler {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
-
-        .kategori {
-            background: #fff;
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
+        .urun {
+            background: white;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 3px 15px #00000012;
             cursor: pointer;
-            text-decoration: none;
-            color: #222;
-
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
             transition: 0.2s;
         }
 
-
-        .kategori:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        .urun:hover {
+            transform: translateY(-4px);
         }
 
-
-        .kategori .ikon {
-            font-size: 55px;
-            margin-bottom: 15px;
+        .urun img {
+            width: 100%;
+            height: 210px;
+            object-fit: contain;
         }
 
-
-        .kategori h2 {
-            margin: 10px 0;
+        .urun h2 {
+            font-size: 19px;
         }
 
-
-        .kategori p {
-            color: #777;
-            margin: 0;
+        .puan {
+            color: #f2a900;
         }
 
+        .eski-fiyat {
+            text-decoration: line-through;
+            color: #999;
+        }
 
-        @media (max-width: 700px) {
+        .fiyat {
+            font-size: 25px;
+            font-weight: bold;
+            margin: 6px 0;
+        }
 
-            .container {
-                margin: 25px auto;
+        .indirim {
+            display: inline-block;
+            background: #e8fff0;
+            color: #159447;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .stok {
+            color: #159447;
+            margin: 12px 0;
+        }
+
+        .sepet-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 9px;
+            padding: 12px;
+            background: #ff6000;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .sepet-btn:hover {
+            background: #e65300;
+        }
+
+        #sepet {
+            margin-top: 40px;
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .sepet-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sil-btn {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .toplam {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 900px) {
+
+            .urunler {
+                grid-template-columns: repeat(2, 1fr);
             }
 
+        }
 
-            .kategoriler {
+        @media (max-width: 600px) {
+
+            .urunler {
                 grid-template-columns: 1fr;
+            }
+
+            header {
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
             }
 
         }
@@ -117,111 +212,472 @@
 <body>
 
 
-    <header>
+<header>
+
+    <h1>Elay Store</h1>
+
+    <nav>
 
         <a href="index.html">
-            ← Ana Sayfaya Dön
+            Ürünler
         </a>
 
-    </header>
+        <a href="hakkimizda.html">
+            Hakkımızda
+        </a>
+
+        <a href="iletisim.html">
+            İletişim
+        </a>
+
+        <a href="uye.html">
+            👤 Üye Ol / Giriş Yap
+        </a>
+
+        <a href="#sepet">
+            🛒 Sepet (
+            <span id="sepetSayi">0</span>
+            )
+        </a>
+
+    </nav>
+
+</header>
 
 
-    <div class="container">
-
-        <h1>
-            🛍️ Ürün Kategorileri
-        </h1>
+<div class="container">
 
 
-        <div class="kategoriler">
+    <h2>
+        Ürün Kategorileri
+    </h2>
 
 
-            <a
-                class="kategori"
-                href="kategori.html?kategori=bileklik"
+    <div class="kategoriler">
+
+        <button onclick="kategoriGoster('hepsi')">
+            🛍️ Tüm Ürünler
+        </button>
+
+        <button onclick="kategoriGoster('bileklik')">
+            🧿 El İşi Bileklik
+        </button>
+
+        <button onclick="kategoriGoster('tablo')">
+            🖼️ El İşi Tablo
+        </button>
+
+        <button onclick="kategoriGoster('kulaklik')">
+            🎧 Kulaklık
+        </button>
+
+    </div>
+
+
+    <h2>
+        Ürünler
+    </h2>
+
+
+    <div class="urunler">
+
+
+        <!-- BİLEKLİK -->
+
+        <div
+            class="urun"
+            data-kategori="bileklik"
+            onclick="urunDetay('mouse')"
+        >
+
+            <img
+                src="resim.jpg"
+                alt="El İşi Bileklik"
             >
 
-                <div class="ikon">
-                    🧿
-                </div>
+            <h2>
+                El İşi Bileklik
+            </h2>
 
-                <h2>
-                    El İşi Bileklik
-                </h2>
+            <div class="puan">
+                ⭐⭐⭐⭐⭐ 4.8
+            </div>
 
-                <p>
-                    El yapımı bileklikler
-                </p>
+            <div class="eski-fiyat">
+                350 TL
+            </div>
 
-            </a>
+            <div class="fiyat">
+                265 TL
+            </div>
+
+            <span class="indirim">
+                İndirim
+            </span>
+
+            <div class="stok">
+                🟢 Stokta Var
+            </div>
+
+            <button
+                class="sepet-btn"
+                onclick="sepeteEkle(event, 'El İşi Bileklik', 265)"
+            >
+                🛒 Sepete Ekle
+            </button>
+
+        </div>
 
 
-            <a
-                class="kategori"
-                href="kategori.html?kategori=klavye"
+        <!-- EL İŞİ TABLO -->
+
+        <div
+            class="urun"
+            data-kategori="tablo"
+            onclick="urunDetay('klavye')"
+        >
+
+            <img
+                src="resim.jpg"
+                alt="El İşi Tablo"
             >
 
-                <div class="ikon">
-                    ⌨️
-                </div>
+            <h2>
+                El İşi Tablo
+            </h2>
 
-                <h2>
-                    Klavye
-                </h2>
+            <div class="puan">
+                ⭐⭐⭐⭐⭐ 4.7
+            </div>
 
-                <p>
-                    Gaming klavyeler
-                </p>
+            <div class="eski-fiyat">
+                2.799 TL
+            </div>
 
-            </a>
+            <div class="fiyat">
+                2.299 TL
+            </div>
+
+            <span class="indirim">
+                %18 İndirim
+            </span>
+
+            <div class="stok">
+                🟢 Stokta Var
+            </div>
+
+            <button
+                class="sepet-btn"
+                onclick="sepeteEkle(event, 'El İşi Tablo', 2299)"
+            >
+                🛒 Sepete Ekle
+            </button>
+
+        </div>
 
 
-            <a
-                class="kategori"
-                href="kategori.html?kategori=mousepad"
+        <!-- MOUSE PAD -->
+
+        <div
+            class="urun"
+            data-kategori="tablo"
+            onclick="urunDetay('mousepad')"
+        >
+
+            <img
+                src="resim.jpg"
+                alt="El İşi Tablo"
             >
 
-                <div class="ikon">
-                    🖱️
-                </div>
+            <h2>
+                El İşi Tablo 2
+            </h2>
 
-                <h2>
-                    Mouse Pad
-                </h2>
+            <div class="puan">
+                ⭐⭐⭐⭐⭐ 4.9
+            </div>
 
-                <p>
-                    Gaming mouse padler
-                </p>
+            <div class="eski-fiyat">
+                899 TL
+            </div>
 
-            </a>
+            <div class="fiyat">
+                699 TL
+            </div>
+
+            <span class="indirim">
+                %22 İndirim
+            </span>
+
+            <div class="stok">
+                🟢 Stokta 40 adet
+            </div>
+
+            <button
+                class="sepet-btn"
+                onclick="sepeteEkle(event, 'El İşi Tablo 2', 699)"
+            >
+                🛒 Sepete Ekle
+            </button>
+
+        </div>
 
 
-            <a
-                class="kategori"
-                href="kategori.html?kategori=kulaklik"
+        <!-- KULAKLIK -->
+
+        <div
+            class="urun"
+            data-kategori="kulaklik"
+            onclick="urunDetay('kulaklik')"
+        >
+
+            <img
+                src="resim.jpg"
+                alt="Kulaklık"
             >
 
-                <div class="ikon">
-                    🎧
-                </div>
+            <h2>
+                Gaming Kulaklık
+            </h2>
 
-                <h2>
-                    Kulaklık
-                </h2>
+            <div class="puan">
+                ⭐⭐⭐⭐☆ 4.6
+            </div>
 
-                <p>
-                    Gaming kulaklıklar
-                </p>
+            <div class="eski-fiyat">
+                1.999 TL
+            </div>
 
-            </a>
+            <div class="fiyat">
+                1.599 TL
+            </div>
 
+            <span class="indirim">
+                %20 İndirim
+            </span>
+
+            <div class="stok">
+                🟢 Stokta 18 adet
+            </div>
+
+            <button
+                class="sepet-btn"
+                onclick="sepeteEkle(event, 'Gaming Kulaklık', 1599)"
+            >
+                🛒 Sepete Ekle
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SEPET -->
+
+    <div id="sepet">
+
+        <h2>
+            🛒 Sepetim
+        </h2>
+
+        <div id="sepetListe">
+            Sepetiniz boş.
+        </div>
+
+        <div class="toplam">
+
+            Toplam:
+
+            <span id="toplam">
+                0
+            </span>
+
+            TL
 
         </div>
 
     </div>
 
 
+</div>
+
+
+<script>
+
+let sepet = JSON.parse(
+    localStorage.getItem("sepet") || "[]"
+);
+
+
+// ÜRÜN DETAYI
+
+function urunDetay(id) {
+
+    window.location.href =
+        "urun.html?urun=" + id;
+
+}
+
+
+// SEPETE EKLE
+
+function sepeteEkle(event, ad, fiyat) {
+
+    event.stopPropagation();
+
+    sepet.push({
+
+        ad: ad,
+        fiyat: fiyat
+
+    });
+
+    localStorage.setItem(
+        "sepet",
+        JSON.stringify(sepet)
+    );
+
+    sepetGoster();
+
+}
+
+
+// SEPETTEN SİL
+
+function sil(index) {
+
+    sepet.splice(index, 1);
+
+    localStorage.setItem(
+        "sepet",
+        JSON.stringify(sepet)
+    );
+
+    sepetGoster();
+
+}
+
+
+// KATEGORİLER
+
+function kategoriGoster(kategori) {
+
+    const urunler =
+        document.querySelectorAll(".urun");
+
+    urunler.forEach(function(urun) {
+
+        const urunKategori =
+            urun.getAttribute("data-kategori");
+
+        if (
+            kategori === "hepsi" ||
+            urunKategori === kategori
+        ) {
+
+            urun.style.display = "";
+
+        } else {
+
+            urun.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+// SEPETİ GÖSTER
+
+function sepetGoster() {
+
+    const sayi =
+        document.getElementById("sepetSayi");
+
+    const liste =
+        document.getElementById("sepetListe");
+
+    const toplam =
+        document.getElementById("toplam");
+
+
+    sayi.textContent =
+        sepet.length;
+
+
+    if (sepet.length === 0) {
+
+        liste.textContent =
+            "Sepetiniz boş.";
+
+        toplam.textContent =
+            "0";
+
+        return;
+
+    }
+
+
+    liste.innerHTML = "";
+
+
+    let toplamFiyat = 0;
+
+
+    sepet.forEach(function(urun, index) {
+
+        toplamFiyat += urun.fiyat;
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "sepet-item";
+
+
+        div.innerHTML =
+
+            "<span>" +
+            urun.ad +
+            "</span>" +
+
+            "<span>" +
+
+            urun.fiyat.toLocaleString("tr-TR") +
+            " TL " +
+
+            "<button class='sil-btn' onclick='sil(" +
+            index +
+            ")'>" +
+
+            "❌" +
+
+            "</button>" +
+
+            "</span>";
+
+
+        liste.appendChild(div);
+
+    });
+
+
+    toplam.textContent =
+        toplamFiyat.toLocaleString("tr-TR");
+
+}
+
+
+// SAYFA AÇILINCA
+
+sepetGoster();
+
+</script>
+
+
 </body>
 
 </html>
-```
