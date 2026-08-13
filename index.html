@@ -5,10 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Elay Store</title>
 
@@ -27,7 +24,7 @@
 
         header {
             background: #0066ff;
-            color: #fff;
+            color: white;
             padding: 22px 6%;
         }
 
@@ -41,9 +38,14 @@
             gap: 18px;
         }
 
-        header a {
-            color: #fff;
+        nav a {
+            color: white;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
         }
 
         .container {
@@ -60,12 +62,10 @@
         }
 
         .kategoriler button {
-            width: auto;
-            margin: 0;
             padding: 12px 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
-            background: #fff;
+            background: white;
             color: #222;
             cursor: pointer;
             font-size: 15px;
@@ -74,7 +74,7 @@
 
         .kategoriler button:hover {
             background: #111;
-            color: #fff;
+            color: white;
         }
 
         .urunler {
@@ -84,7 +84,7 @@
         }
 
         .urun {
-            background: #fff;
+            background: white;
             border-radius: 14px;
             padding: 18px;
             box-shadow: 0 3px 15px #00000012;
@@ -122,11 +122,13 @@
         }
 
         .indirim {
+            display: inline-block;
             background: #e8fff0;
             color: #159447;
             padding: 5px 8px;
             border-radius: 6px;
             font-size: 13px;
+            margin-top: 5px;
         }
 
         .stok {
@@ -140,15 +142,19 @@
             border-radius: 9px;
             padding: 12px;
             background: #ff6000;
-            color: #fff;
+            color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
 
+        .sepet-btn:hover {
+            background: #e65300;
+        }
+
         #sepet {
             margin-top: 40px;
-            background: #fff;
+            background: white;
             border-radius: 14px;
             padding: 22px;
         }
@@ -156,9 +162,16 @@
         .sepet-item {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-            padding: 10px 0;
+            align-items: center;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
+        }
+
+        .sil-btn {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
         }
 
         .toplam {
@@ -181,9 +194,12 @@
                 grid-template-columns: 1fr;
             }
 
+            header {
+                text-align: center;
+            }
+
             nav {
-                flex-direction: column;
-                gap: 10px;
+                justify-content: center;
             }
 
         }
@@ -198,13 +214,11 @@
 
 <header>
 
-    <h1>
-        Elay Store
-    </h1>
+    <h1>Elay Store</h1>
 
     <nav>
 
-        <a href="kategoriler.html">
+        <a href="index.html">
             Ürünler
         </a>
 
@@ -241,34 +255,19 @@
 
     <div class="kategoriler">
 
-        <button
-            type="button"
-            onclick="kategoriGoster('hepsi')"
-        >
+        <button onclick="kategoriGoster('hepsi')">
             🛍️ Tüm Ürünler
         </button>
 
-
-        <button 
-            type="button 
-            onclick="kategoriGoster('bileklik')"
-        >
+        <button onclick="kategoriGoster('bileklik')">
             🧿 El İşi Bileklik
         </button>
 
-
-        <button
-            type="button"
-            onclick="kategoriGoster('tablo')"
-        >
+        <button onclick="kategoriGoster('tablo')">
             🖼️ El İşi Tablo
         </button>
 
-
-        <button
-            type="button"
-            onclick="kategoriGoster('kulaklik')"
-        >
+        <button onclick="kategoriGoster('kulaklik')">
             🎧 Kulaklık
         </button>
 
@@ -313,7 +312,7 @@
             </div>
 
             <span class="indirim">
-                %24 İndirim
+                İndirim
             </span>
 
             <div class="stok">
@@ -381,17 +380,17 @@
 
         <div
             class="urun"
-            data-kategori="mousepad"
+            data-kategori="tablo"
             onclick="urunDetay('mousepad')"
         >
 
             <img
                 src="resim.jpg"
-                alt="90x40 Gaming Mouse Pad"
+                alt="El İşi Tablo"
             >
 
             <h2>
-                90x40 Gaming Mouse Pad
+                El İşi Tablo 2
             </h2>
 
             <div class="puan">
@@ -416,7 +415,7 @@
 
             <button
                 class="sepet-btn"
-                onclick="sepeteEkle(event, '90x40 Gaming Mouse Pad', 699)"
+                onclick="sepeteEkle(event, 'El İşi Tablo 2', 699)"
             >
                 🛒 Sepete Ekle
             </button>
@@ -434,7 +433,7 @@
 
             <img
                 src="resim.jpg"
-                alt="Gaming Kulaklık"
+                alt="Kulaklık"
             >
 
             <h2>
@@ -506,28 +505,30 @@
 
 <script>
 
-
 let sepet = JSON.parse(
     localStorage.getItem("sepet") || "[]"
 );
 
 
+// ÜRÜN DETAYI
+
 function urunDetay(id) {
 
-    location.href =
+    window.location.href =
         "urun.html?urun=" + id;
 
 }
 
 
-function sepeteEkle(e, ad, fiyat) {
+// SEPETE EKLE
 
-    e.stopPropagation();
+function sepeteEkle(event, ad, fiyat) {
+
+    event.stopPropagation();
 
     sepet.push({
 
         ad: ad,
-
         fiyat: fiyat
 
     });
@@ -542,9 +543,11 @@ function sepeteEkle(e, ad, fiyat) {
 }
 
 
-function sil(i) {
+// SEPETTEN SİL
 
-    sepet.splice(i, 1);
+function sil(index) {
+
+    sepet.splice(index, 1);
 
     localStorage.setItem(
         "sepet",
@@ -556,31 +559,26 @@ function sil(i) {
 }
 
 
+// KATEGORİLER
+
 function kategoriGoster(kategori) {
 
     const urunler =
         document.querySelectorAll(".urun");
-
 
     urunler.forEach(function(urun) {
 
         const urunKategori =
             urun.getAttribute("data-kategori");
 
-
-        if (kategori === "hepsi") {
-
-            urun.style.display = "";
-
-        }
-
-        else if (urunKategori === kategori) {
+        if (
+            kategori === "hepsi" ||
+            urunKategori === kategori
+        ) {
 
             urun.style.display = "";
 
-        }
-
-        else {
+        } else {
 
             urun.style.display = "none";
 
@@ -591,6 +589,8 @@ function kategoriGoster(kategori) {
 }
 
 
+// SEPETİ GÖSTER
+
 function sepetGoster() {
 
     const sayi =
@@ -599,7 +599,7 @@ function sepetGoster() {
     const liste =
         document.getElementById("sepetListe");
 
-    const toplamYazi =
+    const toplam =
         document.getElementById("toplam");
 
 
@@ -612,7 +612,7 @@ function sepetGoster() {
         liste.textContent =
             "Sepetiniz boş.";
 
-        toplamYazi.textContent =
+        toplam.textContent =
             "0";
 
         return;
@@ -622,17 +622,17 @@ function sepetGoster() {
 
     liste.innerHTML = "";
 
-    let toplam = 0;
+
+    let toplamFiyat = 0;
 
 
     sepet.forEach(function(urun, index) {
 
-        toplam += urun.fiyat;
+        toplamFiyat += urun.fiyat;
 
 
         const div =
             document.createElement("div");
-
 
         div.className =
             "sepet-item";
@@ -645,12 +645,17 @@ function sepetGoster() {
             "</span>" +
 
             "<span>" +
+
             urun.fiyat.toLocaleString("tr-TR") +
             " TL " +
 
-            "<button onclick=\"sil(" +
+            "<button class='sil-btn' onclick='sil(" +
             index +
-            ")\">❌</button>" +
+            ")'>" +
+
+            "❌" +
+
+            "</button>" +
 
             "</span>";
 
@@ -660,160 +665,19 @@ function sepetGoster() {
     });
 
 
-    toplamYazi.textContent =
-        toplam.toLocaleString("tr-TR");
+    toplam.textContent =
+        toplamFiyat.toLocaleString("tr-TR");
 
 }
 
+
+// SAYFA AÇILINCA
 
 sepetGoster();
 
-
 </script>
-<script>
-
-let sepet = JSON.parse(
-    localStorage.getItem('sepet') || '[]'
-);
 
 
-// ÜRÜN DETAYI
-function urunDetay(id) {
-
-    location.href = 'urun.html?urun=' + id;
-
-}
-
-
-// SEPETE EKLE
-function sepeteEkle(e, ad, fiyat) {
-
-    e.stopPropagation();
-
-    sepet.push({
-        ad: ad,
-        fiyat: fiyat
-    });
-
-    localStorage.setItem(
-        'sepet',
-        JSON.stringify(sepet)
-    );
-
-    sepetGoster();
-
-}
-
-
-// SEPETTEN SİL
-function sil(i) {
-
-    sepet.splice(i, 1);
-
-    localStorage.setItem(
-        'sepet',
-        JSON.stringify(sepet)
-    );
-
-    sepetGoster();
-
-}
-
-
-// KATEGORİ FİLTRELEME
-function kategoriGoster(kategori) {
-
-    const urunler =
-        document.querySelectorAll('.urun');
-
-    urunler.forEach(function(urun) {
-
-        const urunKategori =
-            urun.getAttribute('data-kategori');
-
-        if (
-            kategori === 'hepsi' ||
-            urunKategori === kategori
-        ) {
-
-            urun.style.display = '';
-
-        } else {
-
-            urun.style.display = 'none';
-
-        }
-
-    });
-
-}
-
-
-// SEPETİ GÖSTER
-function sepetGoster() {
-
-    document.getElementById('sepetSayi').textContent =
-        sepet.length;
-
-    const liste =
-        document.getElementById('sepetListe');
-
-    if (sepet.length === 0) {
-
-        liste.textContent =
-            'Sepetiniz boş.';
-
-        document.getElementById('toplam').textContent =
-            '0';
-
-        return;
-
-    }
-
-    liste.innerHTML = '';
-
-    let toplam = 0;
-
-    sepet.forEach(function(u, i) {
-
-        toplam += u.fiyat;
-
-        const div =
-            document.createElement('div');
-
-        div.className =
-            'sepet-item';
-
-        div.innerHTML =
-            '<span>' +
-            u.ad +
-            '</span>' +
-
-            '<span>' +
-            u.fiyat +
-            ' TL ' +
-
-            '<button onclick="sil(' +
-            i +
-            ')">❌</button>' +
-
-            '</span>';
-
-        liste.appendChild(div);
-
-    });
-
-    document.getElementById('toplam').textContent =
-        toplam.toLocaleString('tr-TR');
-
-}
-
-
-// SAYFA AÇILINCA SEPETİ GÖSTER
-sepetGoster();
-
-</script>
-    
 </body>
 
 </html>
