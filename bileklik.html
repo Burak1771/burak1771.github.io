@@ -2,7 +2,6 @@
 <html lang="tr">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,385 +9,91 @@
 
     <style>
 
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f5f5;
-            color: #222;
         }
 
         header {
             background: #0066ff;
             color: white;
-            padding: 22px 6%;
-        }
-
-        header h1 {
-            margin: 0 0 15px 0;
-        }
-
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
+            padding: 25px;
+            text-align: center;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
-
-        .geri {
-            display: inline-block;
-            margin-bottom: 25px;
-            color: #0066ff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .urunler {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
         .urun {
             background: white;
-            border-radius: 14px;
-            padding: 18px;
-            box-shadow: 0 3px 15px #00000012;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
         }
 
         .urun img {
-            width: 100%;
-            height: 210px;
-            object-fit: contain;
-        }
-
-        .urun h2 {
-            font-size: 19px;
-        }
-
-        .puan {
-            color: #f2a900;
-        }
-
-        .eski-fiyat {
-            text-decoration: line-through;
-            color: #999;
+            width: 300px;
+            max-width: 100%;
         }
 
         .fiyat {
-            font-size: 25px;
+            font-size: 28px;
             font-weight: bold;
-            margin: 8px 0;
+            margin: 20px;
         }
 
-        .stok {
-            color: #159447;
-            margin: 12px 0;
-        }
-
-        .sepet-btn {
-            width: 100%;
-            border: 0;
-            border-radius: 9px;
-            padding: 12px;
-            background: #ff6000;
+        .geri {
+            display: inline-block;
+            background: #0066ff;
             color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .sepet-btn:hover {
-            background: #e65300;
-        }
-
-        #sepet {
-            margin-top: 40px;
-            background: white;
-            border-radius: 14px;
-            padding: 22px;
-        }
-
-        .sepet-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .toplam {
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 900px) {
-
-            .urunler {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            .urunler {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                text-align: center;
-            }
-
-            nav {
-                justify-content: center;
-            }
-
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
         }
 
     </style>
 
 </head>
 
-
 <body>
 
-
 <header>
-
     <h1>Elay Store</h1>
-
-    <nav>
-
-        <a href="index.html">
-            Ana Sayfa
-        </a>
-
-        <a href="uye.html">
-            👤 Üye Ol / Giriş Yap
-        </a>
-
-        <a href="#sepet">
-            🛒 Sepet
-            (<span id="sepetSayi">0</span>)
-        </a>
-
-    </nav>
-
 </header>
-
 
 <div class="container">
 
+    <div class="urun">
 
-    <a class="geri" href="index.html">
-        ← Kategorilere Dön
-    </a>
+        <img src="resim.jpg" alt="El İşi Bileklik">
 
+        <h2>🧿 El İşi Bileklik</h2>
 
-    <h2>
-        🧿 El İşi Bileklik
-    </h2>
+        <p>
+            El yapımı özel bileklik.
+        </p>
 
-
-    <div class="urunler">
-
-
-        <!-- BİLEKLİK 1 -->
-
-        <div class="urun">
-
-            <img
-                src="resim.jpg"
-                alt="El İşi Bileklik"
-            >
-
-            <h2>
-                El İşi Bileklik
-            </h2>
-
-            <div class="puan">
-                ⭐⭐⭐⭐⭐ 4.8
-            </div>
-
-            <div class="eski-fiyat">
-                350 TL
-            </div>
-
-            <div class="fiyat">
-                265 TL
-            </div>
-
-            <div class="stok">
-                🟢 Stokta Var
-            </div>
-
-            <button
-                class="sepet-btn"
-                onclick="sepeteEkle('El İşi Bileklik', 265)"
-            >
-                🛒 Sepete Ekle
-            </button>
-
+        <div class="fiyat">
+            265 TL
         </div>
 
+        <p>
+            🟢 Stokta Var
+        </p>
+
+        <br>
+
+        <a class="geri" href="index.html">
+            ← Ürünlere Geri Dön
+        </a>
 
     </div>
-
-
-    <!-- SEPET -->
-
-    <div id="sepet">
-
-        <h2>
-            🛒 Sepetim
-        </h2>
-
-        <div id="sepetListe">
-            Sepetiniz boş.
-        </div>
-
-        <div class="toplam">
-
-            Toplam:
-            <span id="toplam">0</span> TL
-
-        </div>
-
-    </div>
-
 
 </div>
-
-
-<script>
-
-let sepet = JSON.parse(
-    localStorage.getItem("sepet") || "[]"
-);
-
-
-function sepeteEkle(ad, fiyat) {
-
-    sepet.push({
-        ad: ad,
-        fiyat: fiyat
-    });
-
-    localStorage.setItem(
-        "sepet",
-        JSON.stringify(sepet)
-    );
-
-    sepetGoster();
-
-}
-
-
-function sil(index) {
-
-    sepet.splice(index, 1);
-
-    localStorage.setItem(
-        "sepet",
-        JSON.stringify(sepet)
-    );
-
-    sepetGoster();
-
-}
-
-
-function sepetGoster() {
-
-    document.getElementById("sepetSayi").textContent =
-        sepet.length;
-
-    const liste =
-        document.getElementById("sepetListe");
-
-    const toplam =
-        document.getElementById("toplam");
-
-
-    if (sepet.length === 0) {
-
-        liste.textContent =
-            "Sepetiniz boş.";
-
-        toplam.textContent =
-            "0";
-
-        return;
-
-    }
-
-
-    liste.innerHTML = "";
-
-    let toplamFiyat = 0;
-
-
-    sepet.forEach(function(urun, index) {
-
-        toplamFiyat += urun.fiyat;
-
-
-        const div =
-            document.createElement("div");
-
-        div.className = "sepet-item";
-
-
-        div.innerHTML =
-            "<span>" +
-            urun.ad +
-            "</span>" +
-
-            "<span>" +
-            urun.fiyat.toLocaleString("tr-TR") +
-            " TL " +
-
-            "<button onclick='sil(" +
-            index +
-            ")'>❌</button>" +
-
-            "</span>";
-
-
-        liste.appendChild(div);
-
-    });
-
-
-    toplam.textContent =
-        toplamFiyat.toLocaleString("tr-TR");
-
-}
-
-
-sepetGoster();
-
-</script>
-
 
 </body>
 
