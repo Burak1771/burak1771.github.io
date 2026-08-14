@@ -402,7 +402,7 @@ sepetGoster();
     onAuthStateChanged(auth, function (user) {
         if (user) {
             const ad = user.displayName || user.email.split("@")[0];
-            uyeBaglanti.textContent = "👋 Hoş geldin, " + ad;
+            uyeBaglanti.textContent = "👋 Hoş geldiniz, " + ad;
             uyeBaglanti.removeAttribute("href");
             cikisBtn.hidden = false;
         } else {
