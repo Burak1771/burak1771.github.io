@@ -307,6 +307,7 @@ footer {
 
     nav {
         display: flex !important;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 3px 6px !important;

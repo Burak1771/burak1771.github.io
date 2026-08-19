@@ -305,14 +305,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="tema.css?v=6">
 </head>
 
 <body>
     <header>
-        <h1>Elay Filografi</h1>
+        <a class="marka" href="index.html" aria-label="Elay Filografi ana sayfa">
+            <img class="site-logo" src="elay-logo.jpeg?v=3" alt="Elay Filografi logosu">
+        </a>
 
         <nav>
             <a href="index.html">Ürünler</a>
+            <a href="index.html#kisiye-ozel-siparis">Kişiye Özel Sipariş</a>
             <a id="uyeBaglanti" href="uye.html">👤 Üye Ol / Giriş Yap</a>
             <button id="cikisBtn" type="button" hidden>Çıkış Yap</button>
             <a href="sepet.html">🛒 Sepet (<span id="sepetSayi">0</span>)</a>
@@ -468,6 +472,7 @@
                 const resim = document.createElement("img");
                 resim.src = urun.resim || "resim.jpg";
                 resim.alt = urun.ad;
+                if (urun.resim === "tablo-03.png") resim.classList.add("ters-resim");
 
                 const bilgi = document.createElement("div");
                 const ad = document.createElement("p");
