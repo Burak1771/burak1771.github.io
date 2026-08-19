@@ -35,6 +35,7 @@
   </main>
   <script>
     const ortakOzellikler=['El işçiliğiyle hazırlanmıştır','Filografi çivi ve tel tekniği kullanılmıştır','Sipariş ve ölçü bilgisi için iletişime geçebilirsiniz'];
+    const tabloHazirlanma='Hazırlanma süresi; seçilen tablo modeli, ölçü, renk ve işçilik yoğunluğuna göre değişmektedir. Tahmini teslim süresi sipariş öncesinde WhatsApp üzerinden bildirilir.';
     const urunler={
       mouse:{ad:'El İşi Bileklik',fiyat:350,resim:'resim.jpg',puan:'⭐⭐⭐⭐⭐ 4.8 / 5',stok:'🟢 Stokta Var',oz:['Bileğe göre hazırlanabilir','Farklı renk seçenekleri vardır']},
       tablo01:{ad:'Zarif Hat Filografi Tablosu',fiyat:2500,resim:'tablo-01.png'},
@@ -50,7 +51,8 @@
     };
     const id=new URLSearchParams(location.search).get('urun')||'mouse';
     const p=urunler[id]||urunler.mouse;
-    if(!p.puan)p.puan='⭐⭐⭐⭐⭐ 5.0 / 5'; if(!p.stok)p.stok='🟢 Stokta Var'; if(!p.oz)p.oz=ortakOzellikler;
+    if(!p.puan)p.puan='⭐⭐⭐⭐⭐ 5.0 / 5'; if(!p.stok)p.stok='🟢 Stokta Var'; if(!p.oz)p.oz=[...ortakOzellikler];
+    if(id.startsWith('tablo'))p.oz.push(tabloHazirlanma);
     document.getElementById('ad').textContent=p.ad; document.getElementById('fiyat').textContent=p.fiyat.toLocaleString('tr-TR')+' TL';
     document.getElementById('eski').textContent=p.eski||''; document.getElementById('puan').textContent=p.puan; document.getElementById('stok').textContent=p.stok;
     document.getElementById('resim').src=p.resim; document.getElementById('resim').alt=p.ad; if(id==='tablo03')document.getElementById('resim').classList.add('ters-resim');
