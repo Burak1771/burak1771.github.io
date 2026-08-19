@@ -129,6 +129,104 @@ main {
     box-shadow: 0 13px 30px rgba(168, 15, 24, .16) !important;
 }
 
+.ters-resim {
+    transform: rotate(180deg);
+}
+
+.ozel-siparis {
+    margin: 42px 0 10px;
+    padding: 38px 42px;
+    border: 1px solid var(--elay-cizgi);
+    border-top: 6px solid var(--elay-kirmizi);
+    border-radius: 20px;
+    background: #fffdfb;
+    box-shadow: 0 10px 30px rgba(52, 32, 34, .1);
+}
+
+.ozel-siparis h2 {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 30px;
+    color: var(--elay-siyah);
+    font-size: 34px;
+}
+
+.ozel-siparis h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 72%;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--elay-kirmizi);
+}
+
+.ozel-siparis > p {
+    max-width: 720px;
+    margin: 0 0 25px;
+    color: #514849;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.ozel-adimlar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 0 28px;
+}
+
+.ozel-adimlar div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 74px;
+    padding: 15px 17px;
+    border: 1px solid var(--elay-cizgi);
+    border-radius: 13px;
+    background: #fff7f7;
+    color: var(--elay-kirmizi-koyu);
+    font-weight: 700;
+}
+
+.ozel-adimlar strong {
+    font-size: 22px;
+}
+
+.ozel-siparis h3 {
+    margin: 0 0 15px;
+    color: var(--elay-siyah);
+    font-size: 23px;
+}
+
+.ozel-hatlar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.ozel-hatlar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    padding: 13px 18px;
+    border-radius: 11px;
+    background: #169447;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.ozel-hatlar a:hover {
+    background: #107738;
+    transform: translateY(-2px);
+}
+
 .kategoriler button.aktif,
 .sepet-btn,
 .detay button,
@@ -266,5 +364,31 @@ footer {
     .kategoriler button {
         padding: 10px 13px !important;
         font-size: 14px !important;
+    }
+
+    .ozel-siparis {
+        margin-top: 30px;
+        padding: 27px 20px;
+    }
+
+    .ozel-siparis h2 {
+        font-size: 29px;
+    }
+
+    .ozel-siparis > p {
+        font-size: 16px;
+    }
+
+    .ozel-adimlar,
+    .ozel-hatlar {
+        grid-template-columns: 1fr;
+    }
+
+    .ozel-adimlar {
+        gap: 10px;
+    }
+
+    .ozel-adimlar div {
+        min-height: 62px;
     }
 }

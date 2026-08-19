@@ -305,7 +305,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="tema.css?v=4">
+    <link rel="stylesheet" href="tema.css?v=5">
 </head>
 
 <body>
@@ -471,6 +471,7 @@
                 const resim = document.createElement("img");
                 resim.src = urun.resim || "resim.jpg";
                 resim.alt = urun.ad;
+                if (urun.resim === "tablo-03.png") resim.classList.add("ters-resim");
 
                 const bilgi = document.createElement("div");
                 const ad = document.createElement("p");

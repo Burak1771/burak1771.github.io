@@ -14,7 +14,7 @@
     button{width:100%;padding:15px;border:0;border-radius:10px;background:#9a663f;color:#fff;font-size:18px;font-weight:700;cursor:pointer;margin-top:18px}
     @media(max-width:700px){.detay{grid-template-columns:1fr;margin:16px;padding:20px}.resim img{height:340px}h1{font-size:28px}}
   </style>
-  <link rel="stylesheet" href="tema.css?v=4">
+  <link rel="stylesheet" href="tema.css?v=5">
 </head>
 <body>
   <header>
@@ -33,24 +33,24 @@
   <script>
     const ortakOzellikler=['El işçiliğiyle hazırlanmıştır','Filografi çivi ve tel tekniği kullanılmıştır','Sipariş ve ölçü bilgisi için iletişime geçebilirsiniz'];
     const urunler={
-      mouse:{ad:'El İşi Bileklik',fiyat:265,eski:'350 TL',resim:'resim.jpg',puan:'⭐⭐⭐⭐⭐ 4.8 / 5',stok:'🟢 Stokta Var',oz:['Bileğe göre hazırlanabilir','Farklı renk seçenekleri vardır']},
-      tablo01:{ad:'Zarif Hat Filografi Tablosu',fiyat:2299,resim:'tablo-01.png'},
-      tablo02:{ad:'Turkuaz Hat Filografi Tablosu',fiyat:3499,resim:'tablo-02.png'},
-      tablo03:{ad:'Lale Motifli Filografi Tablosu',fiyat:1899,resim:'tablo-03.png'},
-      tablo04:{ad:'Siyah Zemin Hat Filografi Tablosu',fiyat:3299,resim:'tablo-04.png'},
-      tablo05:{ad:'Geometrik Altın Filografi Tablosu',fiyat:2799,resim:'tablo-05.png'},
-      tablo06:{ad:'Allah Lafzı Filografi Tablosu',fiyat:2499,resim:'tablo-06.png'},
-      tablo07:{ad:'Bereket Duası Filografi Tablosu',fiyat:2999,resim:'tablo-07.png'},
-      tablo08:{ad:'Yuvarlak Ahşap Filografi Tablosu',fiyat:3799,resim:'tablo-08.png'},
-      tablo09:{ad:'Turkuaz Besmele Filografi Tablosu',fiyat:3299,resim:'tablo-09.png'},
-      tablo10:{ad:'Gümüş Zemin Hat Filografi Tablosu',fiyat:2899,resim:'tablo-10.png'}
+      mouse:{ad:'El İşi Bileklik',fiyat:350,resim:'resim.jpg',puan:'⭐⭐⭐⭐⭐ 4.8 / 5',stok:'🟢 Stokta Var',oz:['Bileğe göre hazırlanabilir','Farklı renk seçenekleri vardır']},
+      tablo01:{ad:'Zarif Hat Filografi Tablosu',fiyat:2500,resim:'tablo-01.png'},
+      tablo02:{ad:'Turkuaz Hat Filografi Tablosu',fiyat:8500,eski:'10.000 TL',resim:'tablo-02.png'},
+      tablo03:{ad:'Lale Motifli Filografi Tablosu',fiyat:2200,resim:'tablo-03.png'},
+      tablo04:{ad:'Siyah Zemin Hat Filografi Tablosu',fiyat:16500,resim:'tablo-04.png'},
+      tablo05:{ad:'Geometrik Altın Filografi Tablosu',fiyat:12500,resim:'tablo-05.png'},
+      tablo06:{ad:'Allah Lafzı Filografi Tablosu',fiyat:4500,resim:'tablo-06.png'},
+      tablo07:{ad:'Bereket Duası Filografi Tablosu',fiyat:9500,resim:'tablo-07.png'},
+      tablo08:{ad:'Yuvarlak Ahşap Filografi Tablosu',fiyat:11500,resim:'tablo-08.png'},
+      tablo09:{ad:'Turkuaz Besmele Filografi Tablosu',fiyat:3500,resim:'tablo-09.png'},
+      tablo10:{ad:'Gümüş Zemin Hat Filografi Tablosu',fiyat:8500,resim:'tablo-10.png'}
     };
     const id=new URLSearchParams(location.search).get('urun')||'mouse';
     const p=urunler[id]||urunler.mouse;
     if(!p.puan)p.puan='⭐⭐⭐⭐⭐ 5.0 / 5'; if(!p.stok)p.stok='🟢 Stokta Var'; if(!p.oz)p.oz=ortakOzellikler;
     document.getElementById('ad').textContent=p.ad; document.getElementById('fiyat').textContent=p.fiyat.toLocaleString('tr-TR')+' TL';
     document.getElementById('eski').textContent=p.eski||''; document.getElementById('puan').textContent=p.puan; document.getElementById('stok').textContent=p.stok;
-    document.getElementById('resim').src=p.resim; document.getElementById('resim').alt=p.ad;
+    document.getElementById('resim').src=p.resim; document.getElementById('resim').alt=p.ad; if(id==='tablo03')document.getElementById('resim').classList.add('ters-resim');
     p.oz.forEach(x=>{const li=document.createElement('li');li.textContent=x;document.getElementById('ozellik').appendChild(li)});
     function sepeteEkle(){let s=[];try{s=JSON.parse(localStorage.getItem('sepet')||'[]');if(!Array.isArray(s))s=[]}catch(e){s=[]}s.push({ad:p.ad,fiyat:p.fiyat,resim:p.resim});localStorage.setItem('sepet',JSON.stringify(s));alert(p.ad+' sepete eklendi! 🛒')}
   </script>
