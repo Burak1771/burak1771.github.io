@@ -1,0 +1,218 @@
+:root {
+    --elay-siyah: #202020;
+    --elay-koyu: #2b2627;
+    --elay-kirmizi: #d81f2a;
+    --elay-kirmizi-koyu: #a80f18;
+    --elay-pembe: #ed7f88;
+    --elay-krem: #f7f3f1;
+    --elay-beyaz: #ffffff;
+    --elay-cizgi: #ead9d9;
+}
+
+body {
+    color: var(--elay-koyu) !important;
+    background-color: #eeeae6 !important;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0, rgba(255,255,255,.12) 1px, transparent 1px, transparent 4px),
+        linear-gradient(135deg, #f2efeb, #e9e5e1) !important;
+    background-attachment: fixed;
+}
+
+header {
+    min-height: 86px;
+    padding: 10px 6% !important;
+    background: var(--elay-siyah) !important;
+    border-bottom: 3px solid var(--elay-kirmizi);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .16);
+}
+
+.marka {
+    display: inline-flex !important;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    text-decoration: none;
+}
+
+.site-logo {
+    display: block;
+    width: 205px;
+    height: 68px;
+    object-fit: contain;
+    object-position: left center;
+    border-radius: 8px;
+}
+
+nav a,
+header > a:not(.marka) {
+    border-radius: 8px;
+    padding: 9px 10px;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+nav a:hover,
+header > a:not(.marka):hover {
+    color: #fff !important;
+    background: rgba(216, 31, 42, .88);
+}
+
+#cikisBtn {
+    border-color: var(--elay-pembe) !important;
+}
+
+.container,
+main {
+    position: relative;
+}
+
+.giris-vitrin {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 28px;
+    min-height: 335px;
+    padding: 58px 56px;
+    border-radius: 18px;
+    background:
+        linear-gradient(90deg, rgba(244,241,237,.99) 0%, rgba(244,241,237,.97) 39%, rgba(244,241,237,.76) 58%, rgba(244,241,237,.12) 100%),
+        url("tablo-01.png") center 43% / cover no-repeat;
+    color: var(--elay-siyah);
+    box-shadow: 0 10px 28px rgba(32, 32, 32, .18);
+}
+
+.giris-vitrin::after {
+    content: none;
+}
+
+.giris-vitrin h2 {
+    position: relative;
+    max-width: 650px;
+    margin: 0 0 42px;
+    color: var(--elay-siyah) !important;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 5vw, 57px);
+    font-weight: 500;
+    line-height: 1.08;
+}
+
+.giris-vitrin h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -22px;
+    width: min(480px, 78%);
+    height: 2px;
+    background: linear-gradient(90deg, var(--elay-kirmizi), var(--elay-pembe), transparent);
+}
+
+.giris-vitrin p {
+    position: relative;
+    max-width: 520px;
+    margin: 0;
+    color: #3f393a;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.urun,
+.sepet-kutusu,
+.siparis-kutusu,
+.detay,
+.kutu,
+.hero,
+.panel {
+    border: 1px solid rgba(216, 31, 42, .12);
+    background-color: #fffdfb !important;
+    box-shadow: 0 8px 28px rgba(52, 32, 34, .09) !important;
+}
+
+.urun:hover {
+    box-shadow: 0 13px 30px rgba(168, 15, 24, .16) !important;
+}
+
+.kategoriler button.aktif,
+.sepet-btn,
+.detay button,
+.ana-btn,
+.devam {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--elay-kirmizi), var(--elay-kirmizi-koyu)) !important;
+}
+
+.kategoriler button:hover {
+    color: #fff !important;
+    background: var(--elay-siyah) !important;
+}
+
+.whatsapp-btn {
+    box-shadow: 0 7px 16px rgba(22, 140, 77, .2);
+}
+
+.hero {
+    border-top: 5px solid var(--elay-kirmizi) !important;
+}
+
+.hero h2,
+.panel h2,
+.kart h3,
+.grup h3 {
+    color: var(--elay-kirmizi-koyu) !important;
+}
+
+.etiket {
+    color: var(--elay-kirmizi-koyu) !important;
+    background: #fdebec !important;
+}
+
+.kart,
+.baglanti,
+.secim {
+    border-color: var(--elay-cizgi) !important;
+    background: #fffafa !important;
+}
+
+.baglanti:hover {
+    background: #fdebec !important;
+}
+
+.kutu {
+    border-top: 5px solid var(--elay-kirmizi);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--elay-kirmizi) !important;
+    outline: 3px solid rgba(216, 31, 42, .12);
+}
+
+footer {
+    color: #6e5c5e !important;
+}
+
+@media (max-width: 760px) {
+    header {
+        min-height: auto;
+        padding: 10px 18px !important;
+    }
+
+    .site-logo {
+        width: 170px;
+        height: 58px;
+    }
+
+    nav {
+        margin-top: 10px !important;
+    }
+
+    nav a {
+        margin: 3px 4px 3px 0 !important;
+        padding: 7px 8px;
+    }
+
+    .giris-vitrin {
+        min-height: 320px;
+        padding: 38px 24px;
+        background:
+            linear-gradient(90deg, rgba(244,241,237,.97) 0%, rgba(244,241,237,.9) 64%, rgba(244,241,237,.38) 100%),
+            url("tablo-01.png") 68% 42% / cover no-repeat;
+    }
+}
