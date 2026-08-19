@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sepetim - Elay Store</title>
+    <title>Sepetim ve Sipariş - Elay Filografi</title>
 
     <style>
         * {
@@ -23,7 +23,7 @@
             align-items: center;
             gap: 20px;
             padding: 22px 6%;
-            background: #0066ff;
+            background: linear-gradient(135deg,#6f4428,#9c704e);
             color: #fff;
         }
 
@@ -146,6 +146,129 @@
             font-weight: bold;
         }
 
+        .siparis-kutusu {
+            margin-top: 24px;
+            padding: 25px;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 4px 18px #00000012;
+        }
+
+        .siparis-kutusu h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .siparis-aciklama {
+            margin: 0 0 22px;
+            color: #666;
+            line-height: 1.55;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .form-alani {
+            display: grid;
+            gap: 7px;
+        }
+
+        .form-alani.tam {
+            grid-column: 1 / -1;
+        }
+
+        fieldset.form-alani {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .form-alani label,
+        .secim-baslik {
+            font-weight: bold;
+        }
+
+        .form-alani input,
+        .form-alani textarea {
+            width: 100%;
+            border: 1px solid #d6cec8;
+            border-radius: 9px;
+            padding: 12px 13px;
+            font: inherit;
+            background: #fffdfb;
+        }
+
+        .form-alani textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .secim-grubu {
+            display: grid;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .secim {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 12px;
+            border: 1px solid #e4ddd7;
+            border-radius: 10px;
+            background: #fffaf6;
+            cursor: pointer;
+        }
+
+        .secim input {
+            margin-top: 3px;
+        }
+
+        .hat-bilgisi {
+            display: grid;
+            gap: 3px;
+        }
+
+        .hat-numara {
+            white-space: nowrap;
+            color: #6f4428;
+        }
+
+        .bilgi-notu {
+            margin: 18px 0;
+            padding: 13px 15px;
+            border-radius: 10px;
+            background: #f4eee9;
+            color: #574235;
+            line-height: 1.5;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 10px;
+            padding: 15px 18px;
+            background: #168c4d;
+            color: #fff;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .whatsapp-btn:hover {
+            background: #11733e;
+        }
+
+        .hata-mesaji {
+            margin: 12px 0 0;
+            color: #ad1f1f;
+            font-weight: bold;
+        }
+
         @media (max-width: 650px) {
             header {
                 display: block;
@@ -172,13 +295,21 @@
                 align-items: stretch;
                 flex-direction: column;
             }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-alani.tam {
+                grid-column: auto;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Elay Store</h1>
+        <h1>Elay Filografi</h1>
 
         <nav>
             <a href="index.html">Ürünler</a>
@@ -203,6 +334,75 @@
                     Sepeti Temizle
                 </button>
             </div>
+        </section>
+
+        <section id="siparisKutusu" class="siparis-kutusu">
+            <h3>Siparişi Tamamla</h3>
+            <p class="siparis-aciklama">
+                Bilgilerinizi doldurun, ödeme şeklini ve siparişin gönderileceği
+                WhatsApp numarasını seçin. Sipariş özetiniz hazır mesaj olarak açılacaktır.
+            </p>
+
+            <form id="siparisFormu">
+                <div class="form-grid">
+                    <div class="form-alani">
+                        <label for="musteriAd">Ad Soyad</label>
+                        <input id="musteriAd" name="musteriAd" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-alani">
+                        <label for="musteriTelefon">Telefon</label>
+                        <input id="musteriTelefon" name="musteriTelefon" type="tel" autocomplete="tel" placeholder="05__ ___ __ __" required>
+                    </div>
+
+                    <div class="form-alani tam">
+                        <label for="musteriAdres">Teslimat Adresi</label>
+                        <textarea id="musteriAdres" name="musteriAdres" autocomplete="street-address" required></textarea>
+                    </div>
+
+                    <fieldset class="form-alani">
+                        <legend class="secim-baslik">Ödeme Şekli</legend>
+                        <div class="secim-grubu">
+                            <label class="secim">
+                                <input type="radio" name="odeme" value="Havale / EFT" checked>
+                                <span>Havale / EFT</span>
+                            </label>
+                            <label class="secim">
+                                <input type="radio" name="odeme" value="Banka veya kredi kartı">
+                                <span>Banka veya kredi kartı</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-alani">
+                        <legend class="secim-baslik">Sipariş Hattı</legend>
+                        <div class="secim-grubu">
+                            <label class="secim">
+                                <input type="radio" name="siparisHatti" value="905072431779" checked>
+                                <span class="hat-bilgisi">
+                                    <strong>Sevda Erdoğan</strong>
+                                    <span class="hat-numara">05072431779</span>
+                                </span>
+                            </label>
+                            <label class="secim">
+                                <input type="radio" name="siparisHatti" value="905539669062">
+                                <span class="hat-bilgisi">
+                                    <strong>Burak Yağız Erdoğan</strong>
+                                    <span class="hat-numara">05539669062</span>
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="bilgi-notu">
+                    Kartla ödeme seçildiğinde kart bilgisi bu sayfaya yazılmaz.
+                    Siparişiniz alındıktan sonra güvenli ödeme bağlantısı WhatsApp üzerinden gönderilir.
+                </div>
+
+                <button class="whatsapp-btn" type="submit">WhatsApp'tan Sipariş Ver</button>
+                <p id="siparisHata" class="hata-mesaji" role="alert" hidden></p>
+            </form>
         </section>
 
         <a class="devam" href="index.html">← Alışverişe Devam Et</a>
@@ -237,6 +437,7 @@
         function sepetGoster() {
             const liste = document.getElementById("sepetListe");
             const ozet = document.getElementById("ozet");
+            const siparisKutusu = document.getElementById("siparisKutusu");
             const toplamAlani = document.getElementById("toplam");
             const sepetSayi = document.getElementById("sepetSayi");
 
@@ -249,10 +450,12 @@
                 bos.textContent = "Sepetiniz şu anda boş.";
                 liste.appendChild(bos);
                 ozet.hidden = true;
+                siparisKutusu.hidden = true;
                 return;
             }
 
             ozet.hidden = false;
+            siparisKutusu.hidden = false;
             let toplam = 0;
 
             sepet.forEach(function (urun, index) {
@@ -263,7 +466,7 @@
                 satir.className = "sepet-item";
 
                 const resim = document.createElement("img");
-                resim.src = "resim.jpg";
+                resim.src = urun.resim || "resim.jpg";
                 resim.alt = urun.ad;
 
                 const bilgi = document.createElement("div");
@@ -290,6 +493,84 @@
 
             toplamAlani.textContent = toplam.toLocaleString("tr-TR");
         }
+
+        function siparisOzetiOlustur(formVerisi) {
+            const urunSayilari = new Map();
+            let toplam = 0;
+
+            sepet.forEach(function (urun) {
+                const fiyat = Number(urun.fiyat) || 0;
+                const anahtar = urun.ad + "|" + fiyat;
+                const mevcut = urunSayilari.get(anahtar) || {
+                    ad: urun.ad,
+                    fiyat: fiyat,
+                    adet: 0
+                };
+
+                mevcut.adet += 1;
+                urunSayilari.set(anahtar, mevcut);
+                toplam += fiyat;
+            });
+
+            const urunSatirlari = Array.from(urunSayilari.values()).map(function (urun) {
+                const araToplam = urun.fiyat * urun.adet;
+                return "• " + urun.ad + " x " + urun.adet + " — " +
+                    araToplam.toLocaleString("tr-TR") + " TL";
+            });
+
+            const simdi = new Date();
+            const siparisNo = "EF-" +
+                simdi.getFullYear() +
+                String(simdi.getMonth() + 1).padStart(2, "0") +
+                String(simdi.getDate()).padStart(2, "0") + "-" +
+                String(simdi.getHours()).padStart(2, "0") +
+                String(simdi.getMinutes()).padStart(2, "0");
+
+            const satirlar = [
+                "Merhaba, Elay Filografi sitesinden sipariş vermek istiyorum.",
+                "",
+                "Sipariş No: " + siparisNo,
+                "Ad Soyad: " + formVerisi.get("musteriAd").trim(),
+                "Telefon: " + formVerisi.get("musteriTelefon").trim(),
+                "Teslimat Adresi: " + formVerisi.get("musteriAdres").trim(),
+                "",
+                "ÜRÜNLER",
+                ...urunSatirlari,
+                "",
+                "Toplam: " + toplam.toLocaleString("tr-TR") + " TL",
+                "Ödeme Şekli: " + formVerisi.get("odeme")
+            ];
+
+            if (formVerisi.get("odeme") === "Banka veya kredi kartı") {
+                satirlar.push("Kartla ödeme için güvenli ödeme bağlantısı rica ediyorum.");
+            } else {
+                satirlar.push("Havale / EFT bilgilerini rica ediyorum.");
+            }
+
+            return satirlar.join("\n");
+        }
+
+        document.getElementById("siparisFormu").addEventListener("submit", function (olay) {
+            olay.preventDefault();
+
+            const hataAlani = document.getElementById("siparisHata");
+            hataAlani.hidden = true;
+
+            if (sepet.length === 0) {
+                hataAlani.textContent = "Sipariş vermeden önce sepetinize ürün ekleyin.";
+                hataAlani.hidden = false;
+                return;
+            }
+
+            if (!olay.currentTarget.reportValidity()) return;
+
+            const formVerisi = new FormData(olay.currentTarget);
+            const siparisHatti = formVerisi.get("siparisHatti");
+            const mesaj = siparisOzetiOlustur(formVerisi);
+            const whatsappAdresi = "https://wa.me/" + siparisHatti + "?text=" + encodeURIComponent(mesaj);
+
+            window.open(whatsappAdresi, "_blank", "noopener,noreferrer");
+        });
 
         sepetGoster();
     </script>
