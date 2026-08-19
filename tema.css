@@ -190,29 +190,81 @@ footer {
 
 @media (max-width: 760px) {
     header {
+        display: block !important;
         min-height: auto;
-        padding: 10px 18px !important;
+        padding: 9px 14px 11px !important;
+        text-align: center;
+    }
+
+    .marka {
+        width: 100%;
+        justify-content: center;
     }
 
     .site-logo {
-        width: 170px;
-        height: 58px;
+        width: 155px;
+        height: 53px;
+        object-position: center;
     }
 
     nav {
-        margin-top: 10px !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 3px 6px !important;
+        width: 100%;
+        margin-top: 6px !important;
     }
 
     nav a {
-        margin: 3px 4px 3px 0 !important;
-        padding: 7px 8px;
+        margin: 0 !important;
+        padding: 6px 7px;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    #cikisBtn {
+        margin: 2px 0 !important;
+        padding: 6px 8px !important;
+        font-size: 13px;
+    }
+
+    .container {
+        margin-top: 22px !important;
+        padding: 0 14px !important;
     }
 
     .giris-vitrin {
-        min-height: 320px;
-        padding: 38px 24px;
+        min-height: 265px;
+        margin-bottom: 22px;
+        padding: 30px 23px;
         background:
             linear-gradient(90deg, rgba(244,241,237,.97) 0%, rgba(244,241,237,.9) 64%, rgba(244,241,237,.38) 100%),
             url("tablo-01.png") 68% 42% / cover no-repeat;
+    }
+
+    .giris-vitrin h2 {
+        margin-bottom: 34px;
+        font-size: 34px;
+    }
+
+    .giris-vitrin h2::after {
+        bottom: -17px;
+    }
+
+    .giris-vitrin p {
+        max-width: 92%;
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    .kategoriler {
+        gap: 8px !important;
+        margin: 14px 0 24px !important;
+    }
+
+    .kategoriler button {
+        padding: 10px 13px !important;
+        font-size: 14px !important;
     }
 }
