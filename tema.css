@@ -286,6 +286,65 @@ footer {
     color: #6e5c5e !important;
 }
 
+.cerez-bildirimi {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    left: 22px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    width: min(760px, calc(100% - 44px));
+    margin-left: auto;
+    padding: 18px 20px;
+    border: 1px solid var(--elay-cizgi);
+    border-left: 5px solid var(--elay-kirmizi);
+    border-radius: 15px;
+    background: #fffdfb;
+    color: var(--elay-koyu);
+    box-shadow: 0 10px 35px rgba(32, 32, 32, .22);
+}
+
+.cerez-bildirimi strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.cerez-bildirimi p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.cerez-butonlari {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 9px;
+}
+
+.cerez-butonlari button {
+    min-width: 94px;
+    margin: 0;
+    padding: 10px 13px;
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.cerez-reddet {
+    background: #ece8e5;
+    color: #3d3738;
+}
+
+.cerez-kabul {
+    background: var(--elay-kirmizi);
+    color: #fff;
+}
+
 @media (max-width: 760px) {
     header {
         display: block !important;
@@ -391,5 +450,19 @@ footer {
 
     .ozel-adimlar div {
         min-height: 62px;
+    }
+
+    .cerez-bildirimi {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        display: block;
+        width: auto;
+        padding: 16px;
+    }
+
+    .cerez-butonlari {
+        justify-content: flex-end;
+        margin-top: 13px;
     }
 }
